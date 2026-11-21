@@ -360,27 +360,29 @@
       z-index: 2;
     }
 
-    /* 顶部导航栏（iOS 半透明毛玻璃） */
-    .navbar {
-      flex-shrink: 0;
-      height: var(--nav-height);
-      padding: 0 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg-navbar);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 0.5px solid var(--border-light);
-      z-index: 10;
-      position: relative;
-    }
+    /* 1. 通用顶部导航栏（添加/编辑页、月度总结页） */
+.navbar {
+  flex-shrink: 0;
+  height: calc(var(--nav-height) + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-navbar);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--border-light);
+  z-index: 10;
+  position: relative;
+}
 
-    .navbar-home {
-      height: auto;
-      padding: 16px 18px 12px;
-      border-bottom: 0.5px solid var(--border-light);
-    }
+/* 2. 主页顶部导航栏（book / goods / me） */
+.navbar-home {
+  height: auto;
+  padding: calc(14px + env(safe-area-inset-top)) 18px 12px;
+  border-bottom: 0.5px solid var(--border-light);
+}
+
 
     .brand-group {
       display: flex;
@@ -408,19 +410,20 @@
       gap: 6px;
     }
 
-    .nav-title {
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -0.3px;
-      color: var(--text-primary);
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      max-width: 55%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+ .nav-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+  position: absolute;
+  left: 50%;
+  top: calc(env(safe-area-inset-top) + var(--nav-height) / 2);
+  transform: translate(-50%, -50%);
+  max-width: 55%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
     .icon-btn {
       width: 34px;
@@ -784,14 +787,15 @@
     }
 
     /* ================= 周边柜内部界面（无顶部导航栏，仅保留按键） ================= */
-    .cabinet-top-actions {
-      flex-shrink: 0;
-      padding: 12px 16px 4px;
-      background-color: var(--bg-section);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+
+.cabinet-top-actions {
+  flex-shrink: 0;
+  padding: calc(10px + env(safe-area-inset-top)) 16px 4px;
+  background-color: var(--bg-section);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
     .cabinet-hero {
       padding: 6px 18px 14px;
@@ -1861,14 +1865,15 @@
     }
 
     /* 书籍详情展示页面（无导航栏，无缝衔接） */
-    .detail-top-actions {
-      flex-shrink: 0;
-      padding: 12px 16px 4px;
-      background-color: var(--bg-page);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+
+.detail-top-actions {
+  flex-shrink: 0;
+  padding: calc(10px + env(safe-area-inset-top)) 16px 4px;
+  background-color: var(--bg-page);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
     .detail-header {
       padding: 10px 0 18px;
@@ -1963,7 +1968,7 @@
     /* 轻量 Toast 提示 */
     .toast {
       position: fixed;
-      top: 20px;
+      top: calc(12px + env(safe-area-inset-top));
       left: 50%;
       transform: translate(-50%, -20px);
       background-color: rgba(28, 28, 30, 0.88);
@@ -2198,20 +2203,7 @@
       text-overflow: ellipsis;
       flex: 1;
     }
-    .navbar {
-  height: calc(var(--nav-height) + env(safe-area-inset-top));
-  padding-top: env(safe-area-inset-top);
-}
-
-.navbar-home {
-  height: auto;
-  padding: calc(16px + env(safe-area-inset-top)) 18px 12px;
-}
-
-.detail-top-actions,
-.cabinet-top-actions {
-  padding-top: calc(12px + env(safe-area-inset-top));
-}
+ 
   </style>
 </head>
 <body>
