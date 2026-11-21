@@ -1,0 +1,4773 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="bw">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>book & goods - 阅读与周边记录</title>
+  <link rel="manifest" href="./manifest.json" />
+<link rel="icon" type="image/png" href="./icon.png" />
+<link rel="apple-touch-icon" href="./icon.png" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="theme-color" content="#ffffff" />
+  <!-- 引入 Lucide 图标库 -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- 动态外部字体样式链接与 @font-face 挂载点 -->
+  <link id="custom-font-link" rel="stylesheet" />
+  <style id="custom-font-style"></style>
+  <style>
+    /* 7 套极浅 iOS 风格主题配色 */
+    :root,
+    html[data-theme="bw"] {
+      --bg-outer: #f2f2f7;
+      --bg-page: #ffffff;
+      --bg-navbar: rgba(255, 255, 255, 0.88);
+      --bg-section: #f7f7f8;
+      --bg-secondary: #f2f2f7;
+      --text-primary: #1c1c1e;
+      --text-secondary: #636366;
+      --text-tertiary: #9a9aa0;
+      --border-light: #e8e8ed;
+      --accent-bg: #1c1c1e;
+      --accent-on-bg: #ffffff;
+      --accent-text: #1c1c1e;
+      --accent-soft: #f2f2f7;
+      --star-empty: #dcdce0;
+      --glass-bg: rgba(255, 255, 255, 0.66);
+      --glass-active: rgba(28, 28, 30, 0.08);
+    }
+
+    html[data-theme="wg"] {
+      --bg-outer: #ededf0;
+      --bg-page: #ffffff;
+      --bg-navbar: rgba(248, 248, 250, 0.90);
+      --bg-section: #f5f5f7;
+      --bg-secondary: #f2f2f5;
+      --text-primary: #2c2c2e;
+      --text-secondary: #6e6e73;
+      --text-tertiary: #a0a0a6;
+      --border-light: #eaecef;
+      --accent-bg: #d1d1d6;
+      --accent-on-bg: #2c2c2e;
+      --accent-text: #6e6e73;
+      --accent-soft: #f2f2f5;
+      --star-empty: #e0e0e5;
+      --glass-bg: rgba(248, 248, 250, 0.68);
+      --glass-active: rgba(142, 142, 147, 0.14);
+    }
+
+    html[data-theme="wb"] {
+      --bg-outer: #eef5fc;
+      --bg-page: #ffffff;
+      --bg-navbar: rgba(244, 249, 255, 0.90);
+      --bg-section: #f4f9ff;
+      --bg-secondary: #f2f7fd;
+      --text-primary: #1e2d3d;
+      --text-secondary: #617487;
+      --text-tertiary: #9aa9b8;
+      --border-light: #ebf2fa;
+      --accent-bg: #b8dcff;
+      --accent-on-bg: #24507a;
+      --accent-text: #68a4de;
+      --accent-soft: #edf6ff;
+      --star-empty: #dce9f7;
+      --glass-bg: rgba(244, 249, 255, 0.68);
+      --glass-active: rgba(168, 211, 250, 0.36);
+    }
+
+    html[data-theme="wp"] {
+      --bg-outer: #fcf0f4;
+      --bg-page: #ffffff;
+      --bg-navbar: rgba(255, 245, 249, 0.90);
+      --bg-section: #fff6f9;
+      --bg-secondary: #fdf4f7;
+      --text-primary: #362229;
+      --text-secondary: #7a5f69;
+      --text-tertiary: #ad959e;
+      --border-light: #faeef2;
+      --accent-bg: #fccad9;
+      --accent-on-bg: #753149;
+      --accent-text: #e088a6;
+      --accent-soft: #fff2f6;
+      --star-empty: #f5dce5;
+      --glass-bg: rgba(255, 246, 249, 0.68);
+      --glass-active: rgba(252, 202, 217, 0.42);
+    }
+
+    html[data-theme="wy"] {
+      --bg-outer: #fbf7e6;
+      --bg-page: #ffffff;
+      --bg-navbar: rgba(255, 251, 236, 0.92);
+      --bg-section: #fffcf0;
+      --bg-secondary: #fcf9eb;
+      --text-primary: #332c19;
+      --text-secondary: #756b4c;
+      --text-tertiary: #a89f82;
+      --border-light: #f6f0d8;
+      --accent-bg: #fae69e;
+      --accent-on-bg: #614d12;
+      --accent-text: #cfa636;
+      --accent-soft: #fff9e2;
+      --star-empty: #f0e6be;
+      --glass-bg: rgba(255, 252, 240, 0.70);
+      --glass-active: rgba(250, 230, 158, 0.45);
+    }
+
+    html[data-theme="wgr"] {
+      --bg-outer: #edf7f1;
+      --bg-page: #ffffff;
+      --bg-navbar: rgba(242, 251, 245, 0.90);
+      --bg-section: #f3fbf6;
+      --bg-secondary: #f0f9f3;
+      --text-primary: #1d3326;
+      --text-secondary: #5a7565;
+      --text-tertiary: #91a89a;
+      --border-light: #e5f3ea;
+      --accent-bg: #b8e8cc;
+      --accent-on-bg: #205437;
+      --accent-text: #6ab88a;
+      --accent-soft: #eefaf3;
+      --star-empty: #d6ede0;
+      --glass-bg: rgba(243, 251, 246, 0.68);
+      --glass-active: rgba(184, 232, 204, 0.42);
+    }
+
+    html[data-theme="pb"] {
+      --bg-outer: #f5f0f9;
+      --bg-page: #ffffff;
+      --bg-navbar: rgba(255, 245, 249, 0.90);
+      --bg-section: #f3f8ff;
+      --bg-secondary: #f6f3fa;
+      --text-primary: #272f40;
+      --text-secondary: #687082;
+      --text-tertiary: #9ba2b3;
+      --border-light: #f0eaf4;
+      --accent-bg: #bedcfb;
+      --accent-on-bg: #294c73;
+      --accent-text: #79a7db;
+      --accent-soft: #fceef4;
+      --star-empty: #dce6f5;
+      --glass-bg: rgba(252, 244, 250, 0.68);
+      --glass-active: rgba(190, 220, 251, 0.45);
+    }
+
+    :root {
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 8px;
+      --nav-height: 52px;
+      --app-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-outer);
+  color: var(--text-primary);
+  font-family: var(--app-font);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.app-shell {
+  position: relative;
+  max-width: 430px;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: var(--bg-page);
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.25s ease;
+}
+
+    /* ================= 点题开屏动画 ================= */
+    .splash-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 200;
+      background:
+        radial-gradient(circle at 25% 25%, var(--accent-soft) 0%, transparent 55%),
+        radial-gradient(circle at 80% 78%, var(--bg-section) 0%, transparent 60%),
+        var(--bg-page);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      cursor: pointer;
+      transition: opacity 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .splash-screen.fade-out {
+      opacity: 0;
+      transform: scale(1.03);
+      pointer-events: none;
+    }
+
+    .splash-emblem {
+      position: relative;
+      width: 156px;
+      height: 112px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .splash-svg {
+      width: 156px;
+      height: 112px;
+      overflow: visible;
+    }
+
+    .splash-book-path {
+      stroke-dasharray: 260;
+      stroke-dashoffset: 260;
+      animation: drawStroke 0.9s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+    }
+
+    .splash-book-lines {
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: drawStroke 0.65s ease 0.45s forwards;
+    }
+
+    .splash-badge-group {
+      opacity: 0;
+      transform-origin: 112px 54px;
+      animation: popBadge 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+    }
+
+    .splash-sparkle-1 {
+      opacity: 0;
+      animation: twinkleIn 0.5s ease 0.85s forwards;
+    }
+
+    .splash-sparkle-2 {
+      opacity: 0;
+      animation: twinkleIn 0.5s ease 1.0s forwards;
+    }
+
+    .splash-title {
+      margin-top: 18px;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      color: var(--text-primary);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUpFade 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+    }
+
+    .splash-title .amp {
+      font-weight: 400;
+      color: var(--accent-text);
+      margin: 0 3px;
+    }
+
+    .splash-subtitle {
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      color: var(--text-tertiary);
+      opacity: 0;
+      transform: translateY(8px);
+      animation: slideUpFade 0.6s ease 0.82s forwards;
+    }
+
+    .splash-loader {
+      margin-top: 28px;
+      width: 86px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--border-light);
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInOnly 0.4s ease 0.7s forwards;
+    }
+
+    .splash-loader-bar {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--accent-bg);
+      transform-origin: left center;
+      transform: scaleX(0);
+      animation: fillProgress 1.35s cubic-bezier(0.4, 0, 0.2, 1) 0.65s forwards;
+    }
+
+    @keyframes drawStroke {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes popBadge {
+      0% { opacity: 0; transform: scale(0.5) rotate(-14deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    @keyframes twinkleIn {
+      0% { opacity: 0; transform: scale(0.4); }
+      70% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideUpFade {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInOnly {
+      to { opacity: 1; }
+    }
+
+    @keyframes fillProgress {
+      to { transform: scaleX(1); }
+    }
+
+    /* 视图页面管理 */
+    .view {
+      position: absolute;
+  inset: 0;
+  height: 100vh;
+  background-color: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(20px);
+      transition: opacity 0.22s cubic-bezier(0.25, 0.8, 0.25, 1),
+                  transform 0.22s cubic-bezier(0.25, 0.8, 0.25, 1),
+                  background-color 0.25s ease;
+      z-index: 1;
+    }
+
+    .view.tab-view {
+      transform: none;
+    }
+
+    .view.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+      z-index: 2;
+    }
+
+    /* 顶部导航栏（iOS 半透明毛玻璃） */
+    .navbar {
+      flex-shrink: 0;
+      height: var(--nav-height);
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-navbar);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 0.5px solid var(--border-light);
+      z-index: 10;
+      position: relative;
+    }
+
+    .navbar-home {
+      height: auto;
+      padding: 16px 18px 12px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1;
+      color: var(--text-primary);
+    }
+
+    .brand-count {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-title {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--text-primary);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 55%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .icon-btn:active {
+      background-color: var(--bg-secondary);
+      transform: scale(0.92);
+    }
+
+    .icon-btn.primary-circle {
+      background-color: var(--accent-bg);
+      color: var(--accent-on-bg);
+    }
+
+    .icon-btn.primary-circle:active {
+      opacity: 0.85;
+    }
+
+    .text-btn {
+      border: none;
+      background: transparent;
+      color: var(--accent-text);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 6px 4px;
+      cursor: pointer;
+    }
+
+    .text-btn:active {
+      opacity: 0.5;
+    }
+
+    /* 可滚动内容区 */
+    .scroll-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 20px 40px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* 主页（含底部液态玻璃导航栏预留间距） */
+    .scroll-content-home {
+      padding: 0 0 100px;
+    }
+
+    /* iOS 26 液态玻璃底部导航栏（三栏：book / goods / me） */
+    .liquid-tabbar {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      height: 58px;
+      padding: 5px;
+      border-radius: 999px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08),
+        0 2px 6px rgba(0, 0, 0, 0.04),
+        inset 0 1px 1.5px rgba(255, 255, 255, 0.95),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.03);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      z-index: 30;
+      transition: transform 0.24s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.2s ease;
+    }
+
+    .liquid-tabbar.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(24px) scale(0.96);
+    }
+
+    .tab-item {
+      border: none;
+      background: transparent;
+      border-radius: 999px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .tab-item:active {
+      transform: scale(0.95);
+    }
+
+    .tab-item.active {
+      background: var(--glass-active);
+      color: var(--accent-text);
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 1px rgba(255, 255, 255, 0.85);
+    }
+
+    /* ================= BOOK 界面样式 ================= */
+    .year-header {
+      background-color: var(--bg-section);
+      padding: 7px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      border-bottom: 0.5px solid var(--border-light);
+      letter-spacing: -0.1px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .memo-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .memo-row {
+      display: flex;
+      align-items: flex-start;
+      padding: 13px 18px 13px 12px;
+      background-color: var(--bg-page);
+      border-bottom: 0.5px solid var(--border-light);
+      cursor: pointer;
+      transition: background-color 0.12s ease;
+    }
+
+    .memo-row:active {
+      background-color: var(--bg-secondary);
+    }
+
+    .memo-date-col {
+      width: 44px;
+      flex-shrink: 0;
+      text-align: center;
+      margin-right: 10px;
+      padding-top: 2px;
+      user-select: none;
+    }
+
+    .memo-month {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.2;
+    }
+
+    .memo-day {
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-top: 1px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .memo-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .memo-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .memo-author {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.35;
+      margin-top: 2px;
+      word-break: break-word;
+    }
+
+    .memo-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 5px;
+      margin-bottom: 2px;
+    }
+
+    .memo-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      background-color: var(--bg-secondary);
+      border: 0.5px solid var(--border-light);
+      padding: 2px 9px;
+      border-radius: 999px;
+      line-height: 1.3;
+    }
+
+    .memo-review {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .memo-meta {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+      font-size: 12.5px;
+      color: var(--text-tertiary);
+      line-height: 1.2;
+    }
+
+    .memo-stars {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5px;
+    }
+
+    .memo-stars .star-icon {
+      width: 11px;
+      height: 11px;
+    }
+
+    .stars-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .star-icon {
+      width: 14px;
+      height: 14px;
+    }
+
+    .star-icon.filled {
+      fill: var(--accent-text);
+      color: var(--accent-text);
+    }
+
+    .star-icon.empty {
+      fill: none;
+      color: var(--star-empty);
+    }
+
+    .tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      border: 0.5px solid var(--border-light);
+      padding: 4px 11px;
+      border-radius: 999px;
+      line-height: 1.2;
+    }
+
+    /* ================= GOODS 周边柜列表界面 ================= */
+    .cabinet-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cabinet-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 18px;
+      background-color: var(--bg-page);
+      border-bottom: 0.5px solid var(--border-light);
+      cursor: pointer;
+      transition: background-color 0.12s ease;
+    }
+
+    .cabinet-row:active {
+      background-color: var(--bg-secondary);
+    }
+
+    .cabinet-cover {
+      width: 62px;
+      height: 62px;
+      border-radius: 11px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background-color: #ececef;
+      border: 0.5px solid var(--border-light);
+    }
+
+    .cabinet-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cabinet-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cabinet-intro {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cabinet-stats {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 5px;
+      font-size: 12.5px;
+      color: var(--text-tertiary);
+    }
+
+    .cabinet-price {
+      color: var(--accent-text);
+      font-weight: 600;
+    }
+
+    .cabinet-chevron {
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+    }
+
+    /* ================= 周边柜内部界面（无顶部导航栏，仅保留按键） ================= */
+    .cabinet-top-actions {
+      flex-shrink: 0;
+      padding: 12px 16px 4px;
+      background-color: var(--bg-section);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cabinet-hero {
+      padding: 6px 18px 14px;
+      background-color: var(--bg-section);
+      border-bottom: 0.5px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .cabinet-hero-left {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .cabinet-hero-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.25;
+      letter-spacing: -0.4px;
+      word-break: break-word;
+    }
+
+    .cabinet-hero-meta {
+      margin-top: 5px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cabinet-hero-total {
+      color: var(--accent-text);
+      font-weight: 700;
+    }
+
+    .mode-switch-btn {
+      flex-shrink: 0;
+      height: 34px;
+      padding: 0 11px;
+      border-radius: 999px;
+      border: 0.5px solid var(--border-light);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-size: 12.5px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .mode-switch-btn:active {
+      background-color: var(--bg-secondary);
+    }
+
+    .scroll-content-cabinet {
+      padding: 0 0 92px;
+    }
+
+    /* 一排三个网格模式 */
+    .goods-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 14px 16px;
+    }
+
+    .goods-grid-item {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.12s ease;
+      min-width: 0;
+    }
+
+    .goods-grid-item:active {
+      transform: scale(0.96);
+    }
+
+    .goods-grid-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      object-fit: cover;
+      background-color: #ededf0;
+      border: 0.5px solid var(--border-light);
+    }
+
+    .goods-grid-meta {
+      width: 100%;
+      padding: 6px 2px 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2px;
+    }
+
+    .goods-grid-name {
+      width: 100%;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .goods-grid-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-text);
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .goods-grid-date {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      line-height: 1.2;
+    }
+
+    /* 周边列表模式（一行一个） */
+    .goods-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .goods-list-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 18px;
+      background-color: var(--bg-page);
+      border-bottom: 0.5px solid var(--border-light);
+      cursor: pointer;
+      transition: background-color 0.12s ease;
+    }
+
+    .goods-list-row:active {
+      background-color: var(--bg-secondary);
+    }
+
+    .goods-list-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 9px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background-color: #ededf0;
+      border: 0.5px solid var(--border-light);
+    }
+
+    .goods-list-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .goods-list-name {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .goods-list-sub {
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .goods-list-price {
+      font-weight: 700;
+      color: var(--accent-text);
+    }
+
+    .goods-list-date {
+      color: var(--text-tertiary);
+      font-size: 12px;
+    }
+
+    /* 右下角悬浮加号 */
+    .fab-bottom-right {
+      position: absolute;
+      right: 20px;
+      bottom: max(22px, env(safe-area-inset-bottom));
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      background-color: var(--accent-bg);
+      color: var(--accent-on-bg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+      z-index: 20;
+      transition: transform 0.14s ease, opacity 0.14s ease;
+    }
+
+    .fab-bottom-right:active {
+      transform: scale(0.92);
+      opacity: 0.9;
+    }
+
+    /* ================= 我的主页 (ME) 样式 ================= */
+    .me-container {
+      padding: 16px 18px 104px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .profile-card {
+      background-color: var(--bg-section);
+      border: 0.5px solid var(--border-light);
+      border-radius: 18px;
+      padding: 18px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: transform 0.12s ease, background-color 0.15s ease;
+    }
+
+    .profile-card:active {
+      transform: scale(0.985);
+    }
+
+    .profile-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      background-color: var(--bg-secondary);
+      border: 2px solid var(--bg-page);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .profile-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .profile-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .profile-bio {
+      margin-top: 4px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .profile-edit-pill {
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-text);
+      background-color: var(--accent-soft);
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    .me-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .me-stat-box {
+      background-color: var(--bg-section);
+      border: 0.5px solid var(--border-light);
+      border-radius: 14px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .me-stat-num {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .me-stat-label {
+      margin-top: 2px;
+      font-size: 11.5px;
+      color: var(--text-tertiary);
+    }
+
+    .me-section-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      padding: 4px 4px 0;
+      letter-spacing: 0.3px;
+    }
+
+    .me-card {
+      background-color: var(--bg-section);
+      border: 0.5px solid var(--border-light);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .me-row {
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text-primary);
+      border-bottom: 0.5px solid var(--border-light);
+      transition: background-color 0.12s ease;
+    }
+
+    .me-row:last-child {
+      border-bottom: none;
+    }
+
+    .me-row:active {
+      background-color: var(--bg-secondary);
+    }
+
+    .me-row-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background-color: var(--accent-soft);
+      color: var(--accent-text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .me-row-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .me-row-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .me-row-desc {
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 我的主页内嵌主题选择面板 */
+    .me-theme-panel {
+      padding: 14px 14px 16px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+
+    .me-theme-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .me-theme-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .me-theme-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .theme-option {
+      border: 1px solid transparent;
+      background: var(--bg-page);
+      border-radius: 10px;
+      padding: 7px 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 10.5px;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .theme-option.active {
+      border-color: var(--accent-bg);
+      background-color: var(--accent-soft);
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .theme-swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.10);
+      display: inline-block;
+    }
+
+    /* 我的页面最底部数据详情小字 */
+    .me-footer-stats {
+      margin-top: 4px;
+      padding: 6px 10px 10px;
+      text-align: center;
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: var(--text-tertiary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ================= 极简 iOS 风格月度总结界面 ================= */
+    .summary-month-switcher {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border-light);
+      border-radius: 999px;
+      padding: 3px 8px;
+    }
+
+    .summary-month-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .summary-month-btn:active {
+      background: var(--bg-page);
+    }
+
+    .summary-month-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      min-width: 82px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .summary-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 18px 48px;
+      -webkit-overflow-scrolling: touch;
+      background-color: var(--bg-page);
+    }
+
+    .summary-hero-card {
+      background: var(--bg-section);
+      border: 0.5px solid var(--border-light);
+      border-radius: 18px;
+      padding: 18px 16px;
+      margin-bottom: 16px;
+    }
+
+    .summary-hero-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .summary-hero-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--text-primary);
+    }
+
+    .summary-hero-user {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-text);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .summary-hero-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .summary-kpi-box {
+      background: var(--bg-page);
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+
+    .summary-kpi-val {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .summary-kpi-val.accent {
+      color: var(--accent-text);
+    }
+
+    .summary-kpi-lbl {
+      margin-top: 3px;
+      font-size: 11.5px;
+      color: var(--text-tertiary);
+    }
+
+    .summary-mom-bar {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 0.5px solid var(--border-light);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+    }
+
+    .summary-card {
+      background: var(--bg-section);
+      border: 0.5px solid var(--border-light);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .summary-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+
+    .summary-card-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-card-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent-text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .summary-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .summary-card-badge {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-text);
+      background: var(--accent-soft);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .summary-insight {
+      background: var(--bg-page);
+      border: 0.5px solid var(--border-light);
+      border-radius: 11px;
+      padding: 11px 13px;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .summary-mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .summary-mini-metric {
+      background: var(--bg-page);
+      border: 0.5px solid var(--border-light);
+      border-radius: 11px;
+      padding: 10px 12px;
+    }
+
+    .summary-mini-metric-lbl {
+      font-size: 11.5px;
+      color: var(--text-tertiary);
+    }
+
+    .summary-mini-metric-val {
+      margin-top: 3px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .summary-sub-heading {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      margin: 14px 0 8px;
+      letter-spacing: 0.2px;
+    }
+
+    /* 比例进度条列表 */
+    .summary-bar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .summary-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+    }
+
+    .summary-bar-label {
+      width: 78px;
+      flex-shrink: 0;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .summary-bar-track {
+      flex: 1;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--bg-page);
+      border: 0.5px solid var(--border-light);
+      overflow: hidden;
+    }
+
+    .summary-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--accent-bg);
+      transition: width 0.3s ease;
+    }
+
+    .summary-bar-val {
+      width: 68px;
+      flex-shrink: 0;
+      text-align: right;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .summary-kv-list {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-page);
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .summary-kv-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+
+    .summary-kv-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-k {
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    .summary-v {
+      color: var(--text-primary);
+      font-weight: 600;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .summary-quote-box {
+      background: var(--bg-page);
+      border: 0.5px solid var(--border-light);
+      border-left: 3px solid var(--accent-bg);
+      border-radius: 10px;
+      padding: 11px 13px;
+    }
+
+    .summary-quote-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      margin-bottom: 5px;
+    }
+
+    .summary-quote-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-primary);
+    }
+
+    .summary-highlight-item {
+      background: var(--bg-page);
+      border: 0.5px solid var(--border-light);
+      border-radius: 13px;
+      padding: 11px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .summary-highlight-img {
+      width: 66px;
+      height: 66px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 0.5px solid var(--border-light);
+      flex-shrink: 0;
+      background: var(--bg-secondary);
+    }
+
+    .summary-highlight-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .summary-highlight-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--accent-text);
+      background: var(--accent-soft);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+    }
+
+    .summary-highlight-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .summary-highlight-meta {
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .summary-highlight-price {
+      margin-top: 3px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent-text);
+    }
+
+    .summary-records-list {
+      background: var(--bg-page);
+      border: 0.5px solid var(--border-light);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .summary-record-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+
+    .summary-record-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-record-thumb {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border-light);
+    }
+
+    .summary-record-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .summary-record-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .summary-record-sub {
+      margin-top: 2px;
+      font-size: 11.5px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .summary-record-right {
+      flex-shrink: 0;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 空状态 */
+    .empty-state {
+      text-align: center;
+      padding: 90px 24px;
+      color: var(--text-secondary);
+    }
+
+    .empty-icon-box {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background-color: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-text);
+    }
+
+    .empty-state h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .empty-state p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* 添加 / 编辑表单（iOS 风格） */
+    .form-group {
+      margin-top: 18px;
+    }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      letter-spacing: 0.2px;
+    }
+
+    .optional-hint {
+      font-weight: 400;
+      color: var(--text-tertiary);
+      font-size: 12px;
+    }
+
+    .ios-input,
+    .ios-textarea {
+      width: 100%;
+      background-color: var(--bg-secondary);
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-size: 16px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .ios-input:focus,
+    .ios-textarea:focus {
+      background-color: var(--bg-page);
+      border-color: var(--accent-bg);
+    }
+
+    .ios-textarea {
+      min-height: 150px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    /* 标签输入区域 */
+    .tag-input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tag-add-btn {
+      flex-shrink: 0;
+      padding: 0 16px;
+      border-radius: var(--radius-md);
+      border: none;
+      background-color: var(--accent-bg);
+      color: var(--accent-on-bg);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tag-add-btn:active {
+      opacity: 0.8;
+    }
+
+    .form-tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .form-tag-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      background-color: var(--bg-secondary);
+      border: 0.5px solid var(--border-light);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .form-tag-remove {
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    /* 星级评分选择器 */
+    .star-picker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--bg-secondary);
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+    }
+
+    .star-pick-btn {
+      border: none;
+      background: transparent;
+      padding: 2px;
+      cursor: pointer;
+      display: inline-flex;
+      transition: transform 0.1s ease;
+    }
+
+    .star-pick-btn:active {
+      transform: scale(1.18);
+    }
+
+    .star-pick-btn svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .star-pick-btn.active svg {
+      fill: var(--accent-text);
+      color: var(--accent-text);
+    }
+
+    .star-pick-btn:not(.active) svg {
+      fill: none;
+      color: var(--star-empty);
+    }
+
+    .star-score-label {
+      margin-left: auto;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* 书籍详情展示页面（无导航栏，无缝衔接） */
+    .detail-top-actions {
+      flex-shrink: 0;
+      padding: 12px 16px 4px;
+      background-color: var(--bg-page);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .detail-header {
+      padding: 10px 0 18px;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+
+    .detail-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      line-height: 1.3;
+      color: var(--text-primary);
+      word-break: break-word;
+    }
+
+    .detail-author {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    .detail-rating-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .detail-rating-bar .star-icon {
+      width: 17px;
+      height: 17px;
+    }
+
+    .detail-section {
+      padding: 18px 0;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+
+    .detail-section-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      letter-spacing: 0.4px;
+      margin-bottom: 10px;
+    }
+
+    .detail-review-text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .detail-meta-info {
+      padding: 18px 0;
+      font-size: 13px;
+      color: var(--text-tertiary);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .time-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .danger-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px;
+      border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-light);
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 15px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .danger-btn:active {
+      opacity: 0.75;
+    }
+
+    /* 轻量 Toast 提示 */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translate(-50%, -20px);
+      background-color: rgba(28, 28, 30, 0.88);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.22s ease;
+      z-index: 250;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* iOS 风格弹窗遮罩 */
+    .modal-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      padding: 20px;
+    }
+
+    .modal-mask.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* 确认弹窗 */
+    .modal-box {
+      width: 100%;
+      max-width: 280px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      border-radius: 14px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+    }
+
+    .modal-body {
+      padding: 20px 18px 16px;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 5px;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: #6e6e73;
+      line-height: 1.4;
+    }
+
+    .modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 0.5px solid #e5e5ea;
+    }
+
+    .modal-btn {
+      padding: 12px;
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .modal-btn:first-child {
+      border-right: 0.5px solid #e5e5ea;
+      color: #6e6e73;
+    }
+
+    .modal-btn:last-child {
+      font-weight: 600;
+      color: #000000;
+    }
+
+    .modal-btn:active {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* 表单弹窗 */
+    .sheet-modal {
+      width: 100%;
+      max-width: 360px;
+      background: var(--bg-page);
+      border-radius: 18px;
+      padding: 20px 18px 18px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+      border: 0.5px solid var(--border-light);
+      max-height: 88vh;
+      overflow-y: auto;
+    }
+
+    .sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .sheet-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .upload-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background-color: var(--bg-secondary);
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .upload-preview {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      background-color: #ececef;
+      border: 0.5px solid var(--border-light);
+      flex-shrink: 0;
+    }
+
+    .upload-preview.round {
+      border-radius: 50%;
+    }
+
+    .upload-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .upload-btn {
+      border: none;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 0.5px solid var(--border-light);
+      cursor: pointer;
+    }
+
+    .upload-clear-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-tertiary);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .sheet-footer {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .sheet-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .sheet-btn.cancel {
+      background-color: var(--bg-secondary);
+      color: var(--text-secondary);
+    }
+
+    .sheet-btn.confirm {
+      background-color: var(--accent-bg);
+      color: var(--accent-on-bg);
+    }
+
+    .sheet-btn:active {
+      opacity: 0.85;
+    }
+
+    .font-hint-box {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .font-file-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+    }
+
+    .font-file-name {
+      font-size: 13px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- 点题开屏动画：book & goods -->
+    <div id="splash-screen" class="splash-screen" aria-hidden="true">
+      <div class="splash-emblem">
+        <svg class="splash-svg" viewBox="0 0 156 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="splash-book-path"
+            d="M22 30 C22 26 25 23 29 23 L72 26 C75 26 78 29 78 33 L78 88 C78 85 74 82 70 82 L29 79 C25 79 22 76 22 72 Z
+               M134 30 C134 26 131 23 127 23 L84 26 C81 26 78 29 78 33 L78 88 C78 85 82 82 86 82 L127 79 C131 79 134 76 134 72 Z"
+            stroke="var(--text-primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="var(--bg-page)" />
+          <path class="splash-book-lines"
+            d="M34 40 L64 42 M34 52 L64 54 M34 64 L54 65"
+            stroke="var(--text-tertiary)" stroke-width="2.6" stroke-linecap="round" />
+          <g class="splash-badge-group">
+            <circle cx="112" cy="54" r="22" fill="var(--accent-bg)" stroke="var(--bg-page)" stroke-width="3.5" />
+            <circle cx="112" cy="54" r="16" fill="none" stroke="var(--accent-on-bg)" stroke-width="1.6" stroke-dasharray="3 3" opacity="0.6" />
+            <path d="M112 43 L114.9 49.5 L122 50.3 L116.7 55 L118.2 62 L112 58.3 L105.8 62 L107.3 55 L102 50.3 L109.1 49.5 Z"
+              fill="var(--accent-on-bg)" />
+          </g>
+          <path class="splash-sparkle-1" d="M24 14 L25.5 18.5 L30 20 L25.5 21.5 L24 26 L22.5 21.5 L18 20 L22.5 18.5 Z" fill="var(--accent-text)" />
+          <circle class="splash-sparkle-2" cx="136" cy="20" r="3" fill="var(--accent-bg)" />
+        </svg>
+      </div>
+      <div class="splash-title">book<span class="amp">&amp;</span>goods</div>
+      <div class="splash-subtitle">阅读与周边的温柔收藏</div>
+      <div class="splash-loader">
+        <div class="splash-loader-bar"></div>
+      </div>
+    </div>
+
+    <!-- 1. BOOK 主页列表界面 -->
+    <section id="view-home" class="view tab-view active">
+      <header class="navbar navbar-home">
+        <div class="brand-group">
+          <h1 class="brand-title">book</h1>
+          <span id="book-count-text" class="brand-count">0 本</span>
+        </div>
+        <div class="navbar-actions">
+          <button id="btn-go-add" class="icon-btn primary-circle" aria-label="添加阅读记录">
+            <i data-lucide="plus" width="19" height="19"></i>
+          </button>
+        </div>
+      </header>
+      <div class="scroll-content scroll-content-home">
+        <div id="book-list" class="memo-list"></div>
+      </div>
+    </section>
+
+    <!-- 2. GOODS 周边柜列表界面 -->
+    <section id="view-goods" class="view tab-view">
+      <header class="navbar navbar-home">
+        <div class="brand-group">
+          <h1 class="brand-title">goods</h1>
+          <span id="cabinet-count-text" class="brand-count">0 柜</span>
+        </div>
+        <div class="navbar-actions">
+          <button id="btn-add-cabinet" class="icon-btn primary-circle" aria-label="添加周边柜">
+            <i data-lucide="plus" width="19" height="19"></i>
+          </button>
+        </div>
+      </header>
+      <div class="scroll-content scroll-content-home">
+        <div id="cabinet-list" class="cabinet-list"></div>
+      </div>
+    </section>
+
+    <!-- 3. 我的主页界面 (ME) -->
+    <section id="view-me" class="view tab-view">
+      <header class="navbar navbar-home">
+        <div class="brand-group">
+          <h1 class="brand-title">me</h1>
+          <span class="brand-count">我的主页</span>
+        </div>
+      </header>
+      <div class="scroll-content scroll-content-home">
+        <div class="me-container">
+          <!-- 个人名片 -->
+          <div id="btn-edit-profile" class="profile-card" role="button" tabindex="0">
+            <img id="me-avatar-img" class="profile-avatar" alt="个人头像" />
+            <div class="profile-info">
+              <div id="me-name-text" class="profile-name">收藏家</div>
+              <div id="me-bio-text" class="profile-bio">点击编辑头像、名字与个性签名</div>
+            </div>
+            <span class="profile-edit-pill">编辑</span>
+          </div>
+
+          <!-- 快速统计 -->
+          <div class="me-stats-grid">
+            <div class="me-stat-box">
+              <div id="me-stat-books" class="me-stat-num">0</div>
+              <div class="me-stat-label">已读书籍</div>
+            </div>
+            <div class="me-stat-box">
+              <div id="me-stat-cabinets" class="me-stat-num">0</div>
+              <div class="me-stat-label">周边柜</div>
+            </div>
+            <div class="me-stat-box">
+              <div id="me-stat-items" class="me-stat-num">0</div>
+              <div class="me-stat-label">周边件数</div>
+            </div>
+          </div>
+
+          <!-- 统计与报告 -->
+          <div class="me-section-title">数据报告</div>
+          <div class="me-card">
+            <button id="btn-open-summary" class="me-row" type="button">
+              <span class="me-row-icon">
+                <i data-lucide="bar-chart-3" width="17" height="17"></i>
+              </span>
+              <div class="me-row-main">
+                <div class="me-row-title">月度总结</div>
+                <div class="me-row-desc">多维度统计 · 查看本月阅读与周边详细分析</div>
+              </div>
+              <i class="cabinet-chevron" data-lucide="chevron-right" width="16" height="16"></i>
+            </button>
+          </div>
+
+          <!-- 个性化外观（主题 + 字体） -->
+          <div class="me-section-title">外观与字体</div>
+          <div class="me-card">
+            <div class="me-theme-panel">
+              <div class="me-theme-header">
+                <div class="me-theme-title-wrap">
+                  <span class="me-row-icon">
+                    <i data-lucide="palette" width="17" height="17"></i>
+                  </span>
+                  <div>
+                    <div class="me-row-title">主题配色</div>
+                    <div id="me-theme-current" class="me-row-desc">当前：黑白</div>
+                  </div>
+                </div>
+              </div>
+              <div id="me-theme-grid" class="me-theme-grid">
+                <button type="button" class="theme-option" data-theme-val="bw">
+                  <span class="theme-swatch" style="background: linear-gradient(135deg, #ffffff 50%, #2c2c2e 50%);"></span>
+                  <span>黑白</span>
+                </button>
+                <button type="button" class="theme-option" data-theme-val="wg">
+                  <span class="theme-swatch" style="background: linear-gradient(135deg, #ffffff 50%, #d8d8de 50%);"></span>
+                  <span>白灰</span>
+                </button>
+                <button type="button" class="theme-option" data-theme-val="wb">
+                  <span class="theme-swatch" style="background: linear-gradient(135deg, #ffffff 50%, #c6e2ff 50%);"></span>
+                  <span>白蓝</span>
+                </button>
+                <button type="button" class="theme-option" data-theme-val="wp">
+                  <span class="theme-swatch" style="background: linear-gradient(135deg, #ffffff 50%, #fdd5e3 50%);"></span>
+                  <span>白粉</span>
+                </button>
+                <button type="button" class="theme-option" data-theme-val="wy">
+                  <span class="theme-swatch" style="background: linear-gradient(135deg, #ffffff 50%, #fcedb1 50%);"></span>
+                  <span>白黄</span>
+                </button>
+                <button type="button" class="theme-option" data-theme-val="wgr">
+                  <span class="theme-swatch" style="background: linear-gradient(135deg, #ffffff 50%, #c6eed7 50%);"></span>
+                  <span>白绿</span>
+                </button>
+                <button type="button" class="theme-option" data-theme-val="pb">
+                  <span class="theme-swatch" style="background: linear-gradient(135deg, #fddae7 50%, #cae4ff 50%);"></span>
+                  <span>粉蓝</span>
+                </button>
+              </div>
+            </div>
+
+            <button id="btn-open-font" class="me-row" type="button">
+              <span class="me-row-icon">
+                <i data-lucide="type" width="17" height="17"></i>
+              </span>
+              <div class="me-row-main">
+                <div class="me-row-title">全局字体</div>
+                <div id="me-font-desc" class="me-row-desc">当前：系统默认字体</div>
+              </div>
+              <i class="cabinet-chevron" data-lucide="chevron-right" width="16" height="16"></i>
+            </button>
+          </div>
+
+          <!-- 数据备份与本地存储 -->
+          <div class="me-section-title">本地存储与备份</div>
+          <div class="me-card">
+            <button id="btn-export-data" class="me-row" type="button">
+              <span class="me-row-icon">
+                <i data-lucide="download" width="17" height="17"></i>
+              </span>
+              <div class="me-row-main">
+                <div class="me-row-title">导出全部数据</div>
+                <div class="me-row-desc">导出为「book goods 几月几号备份.json」保存到本地</div>
+              </div>
+              <i class="cabinet-chevron" data-lucide="chevron-right" width="16" height="16"></i>
+            </button>
+
+            <button id="btn-import-data" class="me-row" type="button">
+              <span class="me-row-icon">
+                <i data-lucide="upload" width="17" height="17"></i>
+              </span>
+              <div class="me-row-main">
+                <div class="me-row-title">导入数据文件</div>
+                <div class="me-row-desc">上传导出的 .json 文件以恢复记录与图片</div>
+              </div>
+              <i class="cabinet-chevron" data-lucide="chevron-right" width="16" height="16"></i>
+            </button>
+            <input id="input-import-file" type="file" accept=".json,application/json" hidden />
+          </div>
+
+          <!-- 页面最底部小字：标明数据详情与具体 MB -->
+          <div id="me-footer-stats" class="me-footer-stats">
+            本地数据详情计算中...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- iOS 26 液态玻璃底部导航栏（book / goods / me） -->
+    <nav id="liquid-tabbar" class="liquid-tabbar" aria-label="主导航">
+      <button type="button" class="tab-item active" data-tab="home">
+        <i data-lucide="book-open" width="19" height="19"></i>
+        <span>book</span>
+      </button>
+      <button type="button" class="tab-item" data-tab="goods">
+        <i data-lucide="archive" width="19" height="19"></i>
+        <span>goods</span>
+      </button>
+      <button type="button" class="tab-item" data-tab="me">
+        <i data-lucide="user" width="19" height="19"></i>
+        <span>me</span>
+      </button>
+    </nav>
+
+    <!-- 4. 书籍 添加 / 编辑界面 -->
+    <section id="view-form" class="view">
+      <header class="navbar">
+        <button id="btn-form-back" class="icon-btn" aria-label="返回">
+          <i data-lucide="chevron-left" width="24" height="24"></i>
+        </button>
+        <span id="form-nav-title" class="nav-title">添加记录</span>
+        <button id="btn-form-save" class="text-btn">保存</button>
+      </header>
+      <div class="scroll-content">
+        <div class="form-group">
+          <label class="form-label" for="input-title">书名</label>
+          <input id="input-title" class="ios-input" type="text" placeholder="输入小说名称" maxlength="80" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="input-author">作者</label>
+          <input id="input-author" class="ios-input" type="text" placeholder="输入作者名" maxlength="50" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="input-tag">
+            <span>作品标签</span>
+            <span class="optional-hint">选填 · 可添加多个</span>
+          </label>
+          <div class="tag-input-row">
+            <input id="input-tag" class="ios-input" type="text" placeholder="如：悬疑、群像、HE（回车或点添加）" maxlength="20" />
+            <button id="btn-add-tag" type="button" class="tag-add-btn">添加</button>
+          </div>
+          <div id="form-tags-list" class="form-tags-list"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">星级评分</label>
+          <div class="star-picker" id="star-picker">
+            <button type="button" class="star-pick-btn" data-star="1"><i data-lucide="star"></i></button>
+            <button type="button" class="star-pick-btn" data-star="2"><i data-lucide="star"></i></button>
+            <button type="button" class="star-pick-btn" data-star="3"><i data-lucide="star"></i></button>
+            <button type="button" class="star-pick-btn" data-star="4"><i data-lucide="star"></i></button>
+            <button type="button" class="star-pick-btn" data-star="5"><i data-lucide="star"></i></button>
+            <span id="star-score-label" class="star-score-label">5 颗星</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="input-review">书评</label>
+          <textarea id="input-review" class="ios-textarea" placeholder="写下你的读后感、印象深刻的片段或吐槽..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 书籍展示（详情）界面：去掉导航栏与“详情”二字，删除与编辑放在右上角，无缝衔接下方内容 -->
+    <section id="view-detail" class="view">
+      <div class="detail-top-actions">
+        <button id="btn-detail-back" class="icon-btn" aria-label="返回主页">
+          <i data-lucide="chevron-left" width="24" height="24"></i>
+        </button>
+        <div class="navbar-actions">
+          <button id="btn-detail-delete" class="icon-btn" aria-label="删除记录" title="删除记录">
+            <i data-lucide="trash-2" width="18" height="18"></i>
+          </button>
+          <button id="btn-detail-edit" class="icon-btn" aria-label="编辑记录" title="编辑记录">
+            <i data-lucide="square-pen" width="19" height="19"></i>
+          </button>
+        </div>
+      </div>
+      <div class="scroll-content" id="detail-content"></div>
+    </section>
+
+    <!-- 6. 周边柜内部界面（右下角悬浮加号） -->
+    <section id="view-cabinet" class="view">
+      <div class="cabinet-top-actions">
+        <button id="btn-cabinet-back" class="icon-btn" aria-label="返回周边列表">
+          <i data-lucide="chevron-left" width="24" height="24"></i>
+        </button>
+        <div class="navbar-actions">
+          <button id="btn-cabinet-edit" class="icon-btn" aria-label="编辑周边柜" title="编辑周边柜">
+            <i data-lucide="square-pen" width="18" height="18"></i>
+          </button>
+          <button id="btn-cabinet-delete" class="icon-btn" aria-label="删除周边柜" title="删除周边柜">
+            <i data-lucide="trash-2" width="18" height="18"></i>
+          </button>
+        </div>
+      </div>
+      <div class="cabinet-hero">
+        <div class="cabinet-hero-left">
+          <div id="cabinet-hero-title" class="cabinet-hero-title"></div>
+          <div class="cabinet-hero-meta">
+            <span id="cabinet-hero-count">0 件</span>
+            <span>·</span>
+            <span id="cabinet-hero-total" class="cabinet-hero-total">¥0</span>
+          </div>
+        </div>
+        <button id="btn-toggle-goods-mode" class="mode-switch-btn" type="button">
+          <i id="icon-goods-mode" data-lucide="list" width="15" height="15"></i>
+          <span id="text-goods-mode">列表</span>
+        </button>
+      </div>
+      <div class="scroll-content scroll-content-cabinet" id="cabinet-items-container"></div>
+      <button id="btn-add-goods-item" class="fab-bottom-right" type="button" aria-label="添加周边">
+        <i data-lucide="plus" width="22" height="22"></i>
+      </button>
+    </section>
+
+    <!-- 7. 月度总结界面（恢复统一极简 iOS UI，多维度长报告） -->
+    <section id="view-summary" class="view">
+      <header class="navbar">
+        <button id="btn-summary-back" class="icon-btn" aria-label="返回我的主页">
+          <i data-lucide="chevron-left" width="24" height="24"></i>
+        </button>
+        <div class="summary-month-switcher">
+          <button id="btn-summary-prev" class="summary-month-btn" type="button" aria-label="上个月">
+            <i data-lucide="chevron-left" width="16" height="16"></i>
+          </button>
+          <span id="summary-month-label" class="summary-month-label">2025年5月</span>
+          <button id="btn-summary-next" class="summary-month-btn" type="button" aria-label="下个月">
+            <i data-lucide="chevron-right" width="16" height="16"></i>
+          </button>
+        </div>
+        <div style="width: 34px;"></div>
+      </header>
+      <div id="summary-scroll" class="summary-scroll"></div>
+    </section>
+  </div>
+
+  <!-- Toast 提示 -->
+  <div id="toast" class="toast"></div>
+
+  <!-- 新建 / 编辑周边柜弹窗 -->
+  <div id="cabinet-modal" class="modal-mask">
+    <div class="sheet-modal">
+      <div class="sheet-header">
+        <span id="cabinet-modal-title" class="sheet-title">新建周边柜</span>
+        <button id="btn-close-cabinet-modal" class="icon-btn" type="button" aria-label="关闭">
+          <i data-lucide="x" width="18" height="18"></i>
+        </button>
+      </div>
+      <div class="form-group" style="margin-top: 6px;">
+        <label class="form-label">
+          <span>封面图</span>
+          <span class="optional-hint">留空使用默认灰图</span>
+        </label>
+        <div class="upload-box">
+          <img id="cabinet-cover-preview" class="upload-preview" alt="封面预览" />
+          <div class="upload-actions">
+            <button id="btn-pick-cabinet-cover" type="button" class="upload-btn">上传封面</button>
+            <button id="btn-clear-cabinet-cover" type="button" class="upload-clear-btn">恢复默认图</button>
+            <input id="input-cabinet-cover" type="file" accept="image/*" hidden />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-cabinet-name">周边柜名称</label>
+        <input id="input-cabinet-name" class="ios-input" type="text" placeholder="例如：吧唧立牌柜" maxlength="40" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-cabinet-intro">
+          <span>一句话介绍</span>
+          <span class="optional-hint">选填</span>
+        </label>
+        <input id="input-cabinet-intro" class="ios-input" type="text" placeholder="简单描述这个柜子..." maxlength="60" />
+      </div>
+      <div class="sheet-footer">
+        <button id="btn-cabinet-cancel" type="button" class="sheet-btn cancel">取消</button>
+        <button id="btn-cabinet-save" type="button" class="sheet-btn confirm">添加</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 添加 / 编辑周边物品弹窗 -->
+  <div id="item-modal" class="modal-mask">
+    <div class="sheet-modal">
+      <div class="sheet-header">
+        <span id="item-modal-title" class="sheet-title">添加周边</span>
+        <button id="btn-close-item-modal" class="icon-btn" type="button" aria-label="关闭">
+          <i data-lucide="x" width="18" height="18"></i>
+        </button>
+      </div>
+      <div class="form-group" style="margin-top: 6px;">
+        <label class="form-label">
+          <span>周边图片</span>
+          <span class="optional-hint">选填</span>
+        </label>
+        <div class="upload-box">
+          <img id="item-img-preview" class="upload-preview" alt="周边预览" />
+          <div class="upload-actions">
+            <button id="btn-pick-item-img" type="button" class="upload-btn">上传图片</button>
+            <button id="btn-clear-item-img" type="button" class="upload-clear-btn">恢复默认图</button>
+            <input id="input-item-img" type="file" accept="image/*" hidden />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-item-name">周边名称</label>
+        <input id="input-item-name" class="ios-input" type="text" placeholder="输入周边名称" maxlength="50" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-item-price">价格（元）</label>
+        <input id="input-item-price" class="ios-input" type="number" step="0.01" min="0" inputmode="decimal" placeholder="0.00" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-item-date">购买日期</label>
+        <input id="input-item-date" class="ios-input" type="date" />
+      </div>
+      <button id="btn-delete-item" type="button" class="danger-btn" style="display:none; margin-top: 16px;">
+        <i data-lucide="trash-2" width="15" height="15"></i>
+        删除这个周边
+      </button>
+      <div class="sheet-footer">
+        <button id="btn-item-cancel" type="button" class="sheet-btn cancel">取消</button>
+        <button id="btn-item-save" type="button" class="sheet-btn confirm">添加</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 编辑个人资料弹窗 -->
+  <div id="profile-modal" class="modal-mask">
+    <div class="sheet-modal">
+      <div class="sheet-header">
+        <span class="sheet-title">编辑个人资料</span>
+        <button id="btn-close-profile-modal" class="icon-btn" type="button" aria-label="关闭">
+          <i data-lucide="x" width="18" height="18"></i>
+        </button>
+      </div>
+      <div class="form-group" style="margin-top: 6px;">
+        <label class="form-label">头像</label>
+        <div class="upload-box">
+          <img id="profile-avatar-preview" class="upload-preview round" alt="头像预览" />
+          <div class="upload-actions">
+            <button id="btn-pick-avatar" type="button" class="upload-btn">上传头像</button>
+            <button id="btn-clear-avatar" type="button" class="upload-clear-btn">恢复默认头像</button>
+            <input id="input-profile-avatar" type="file" accept="image/*" hidden />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-profile-name">名字</label>
+        <input id="input-profile-name" class="ios-input" type="text" placeholder="输入你的名字或昵称" maxlength="30" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-profile-bio">个性签名</label>
+        <input id="input-profile-bio" class="ios-input" type="text" placeholder="写一句阅读与收藏心情..." maxlength="80" />
+      </div>
+      <div class="sheet-footer">
+        <button id="btn-profile-cancel" type="button" class="sheet-btn cancel">取消</button>
+        <button id="btn-profile-save" type="button" class="sheet-btn confirm">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 字体设置弹窗 -->
+  <div id="font-modal" class="modal-mask">
+    <div class="sheet-modal">
+      <div class="sheet-header">
+        <span class="sheet-title">全局字体设置</span>
+        <button id="btn-close-font-modal" class="icon-btn" type="button" aria-label="关闭">
+          <i data-lucide="x" width="18" height="18"></i>
+        </button>
+      </div>
+      <div class="font-hint-box">
+        支持填入字体文件直链（.ttf / .woff2 / .otf）或在线样式表链接（如 Google Fonts / CDN .css），也可直接上传本地字体文件。
+      </div>
+      <div class="form-group" style="margin-top: 8px;">
+        <label class="form-label" for="input-font-url">方式一：输入字体 URL</label>
+        <input id="input-font-url" class="ios-input" type="url" placeholder="https://.../font.woff2 或 .css" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-font-family">
+          <span>字体名称</span>
+          <span class="optional-hint">仅 .css 链接无法自动识别时选填</span>
+        </label>
+        <input id="input-font-family" class="ios-input" type="text" placeholder="例如：LXGW WenKai 或 Noto Serif SC" maxlength="60" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">方式二：上传本地字体文件</label>
+        <div class="font-file-row">
+          <span id="font-file-name-label" class="font-file-name">未选择本地字体文件</span>
+          <button id="btn-pick-font-file" type="button" class="upload-btn">选择文件</button>
+          <input id="input-font-file" type="file" accept=".ttf,.otf,.woff,.woff2,font/*" hidden />
+        </div>
+      </div>
+      <button id="btn-reset-font" type="button" class="danger-btn" style="margin-top: 16px;">
+        <i data-lucide="rotate-ccw" width="15" height="15"></i>
+        恢复默认系统字体
+      </button>
+      <div class="sheet-footer">
+        <button id="btn-font-cancel" type="button" class="sheet-btn cancel">取消</button>
+        <button id="btn-font-apply" type="button" class="sheet-btn confirm">应用字体</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通用确认弹窗 -->
+  <div id="confirm-modal" class="modal-mask">
+    <div class="modal-box">
+      <div class="modal-body">
+        <div id="confirm-modal-title" class="modal-title">删除这条记录？</div>
+        <div id="confirm-modal-desc" class="modal-desc">删除后将无法恢复。</div>
+      </div>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="modal-btn">取消</button>
+        <button id="modal-confirm" class="modal-btn">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const LEGACY_KEYS = {
+        books: 'minimal_book_records_v1',
+        cabinets: 'minimal_goods_cabinets_v1',
+        mode: 'minimal_goods_view_mode_v1',
+        theme: 'minimal_book_theme_v1'
+      };
+
+      const IDB_NAME = 'BookAndGoodsDB';
+      const IDB_VERSION = 1;
+      const IDB_STORE = 'kvStore';
+
+      const THEME_NAMES = {
+        bw: '黑白',
+        wg: '白灰',
+        wb: '白蓝',
+        wp: '白粉',
+        wy: '白黄',
+        wgr: '白绿',
+        pb: '粉蓝'
+      };
+
+      const DEFAULT_CABINET_COVER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">' +
+        '<rect width="200" height="200" fill="#ececef"/>' +
+        '<rect x="52" y="54" width="96" height="92" rx="14" fill="#e2e2e7" stroke="#b8b8c0" stroke-width="4"/>' +
+        '<line x1="52" y1="98" x2="148" y2="98" stroke="#b8b8c0" stroke-width="4"/>' +
+        '<line x1="86" y1="76" x2="114" y2="76" stroke="#aeaeb6" stroke-width="4" stroke-linecap="round"/>' +
+        '<line x1="86" y1="122" x2="114" y2="122" stroke="#aeaeb6" stroke-width="4" stroke-linecap="round"/>' +
+        '</svg>'
+      );
+
+      const DEFAULT_ITEM_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">' +
+        '<rect width="200" height="200" fill="#ededf0"/>' +
+        '<rect x="54" y="54" width="92" height="92" rx="14" fill="none" stroke="#bdbdc5" stroke-width="4.5"/>' +
+        '<circle cx="82" cy="84" r="8.5" fill="#bdbdc5"/>' +
+        '<path d="M60 128l28-26 20 18 16-14 16 22" fill="none" stroke="#bdbdc5" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>'
+      );
+
+      const DEFAULT_AVATAR_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">' +
+        '<rect width="200" height="200" fill="#ececf0"/>' +
+        '<circle cx="100" cy="78" r="30" fill="#c7c7cf"/>' +
+        '<path d="M46 168c4-30 28-46 54-46s50 16 54 46" fill="#c7c7cf"/>' +
+        '</svg>'
+      );
+
+      const DEFAULT_FONT_STACK = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", Arial, sans-serif';
+
+      // ================= IndexedDB 大容量本地数据库封装 =================
+      let dbPromise = null;
+
+      function openDB() {
+        if (dbPromise) return dbPromise;
+        dbPromise = new Promise((resolve, reject) => {
+          const req = indexedDB.open(IDB_NAME, IDB_VERSION);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains(IDB_STORE)) {
+              db.createObjectStore(IDB_STORE);
+            }
+          };
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error);
+        });
+        return dbPromise;
+      }
+
+      async function idbGet(key) {
+        const db = await openDB();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(IDB_STORE, 'readonly');
+          const store = tx.objectStore(IDB_STORE);
+          const req = store.get(key);
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+      async function idbSet(key, value) {
+        const db = await openDB();
+        return new Promise((resolve, reject) => {
+          const tx = db.transaction(IDB_STORE, 'readwrite');
+          const store = tx.objectStore(IDB_STORE);
+          const req = store.put(value, key);
+          req.onsuccess = () => resolve();
+          req.onerror = () => reject(req.error);
+        });
+      }
+
+      function getByteSizeMB(obj) {
+        try {
+          const str = JSON.stringify(obj);
+          const bytes = new Blob([str]).size;
+          return bytes / (1024 * 1024);
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function updateStorageUsageText() {
+        const footerEl = document.getElementById('me-footer-stats');
+        if (!footerEl) return;
+
+        const booksMB = getByteSizeMB(books);
+        const cabinetsMB = getByteSizeMB(cabinets);
+        const otherMB = getByteSizeMB({ profile, fontSettings, theme: currentTheme, goodsViewMode });
+        const totalMB = booksMB + cabinetsMB + otherMB;
+        const totalItems = cabinets.reduce((sum, cab) => sum + (Array.isArray(cab.items) ? cab.items.length : 0), 0);
+
+        footerEl.innerHTML =
+          `本地数据详情：共 ${books.length} 本书 · ${cabinets.length} 个周边柜 · ${totalItems} 件周边<br/>` +
+          `总占用 ${totalMB.toFixed(2)} MB（书籍 ${booksMB.toFixed(2)} MB · 周边图库 ${cabinetsMB.toFixed(2)} MB · 资料字体 ${otherMB.toFixed(2)} MB）`;
+      }
+
+      // ================= 应用状态 =================
+      let books = [];
+      let cabinets = [];
+      let profile = {
+        avatar: '',
+        name: '收藏家',
+        bio: '记录每一次心动阅读与好物'
+      };
+      let fontSettings = {
+        mode: 'system',
+        url: '',
+        fontFamily: '',
+        fileName: '',
+        fileData: ''
+      };
+      let currentTheme = 'bw';
+      let goodsViewMode = 'grid';
+
+      let activeTab = 'home';
+      let currentDetailId = null;
+      let editingId = null;
+      let formTags = [];
+      let formStars = 5;
+      let formReturnTarget = 'home';
+
+      let currentCabinetId = null;
+      let editingCabinetId = null;
+      let tempCabinetCover = '';
+      let editingItemId = null;
+      let tempItemImg = '';
+      let tempAvatar = '';
+      let tempFontFileData = '';
+      let tempFontFileName = '';
+      let pendingConfirmAction = null;
+
+      let summaryYear = new Date().getFullYear();
+      let summaryMonth = new Date().getMonth() + 1;
+
+      // ================= DOM 引用 =================
+      const views = {
+        home: document.getElementById('view-home'),
+        goods: document.getElementById('view-goods'),
+        me: document.getElementById('view-me'),
+        form: document.getElementById('view-form'),
+        detail: document.getElementById('view-detail'),
+        cabinet: document.getElementById('view-cabinet'),
+        summary: document.getElementById('view-summary')
+      };
+
+      const splashScreen = document.getElementById('splash-screen');
+      const liquidTabbar = document.getElementById('liquid-tabbar');
+      const tabItems = document.querySelectorAll('.liquid-tabbar .tab-item');
+
+      const bookListEl = document.getElementById('book-list');
+      const bookCountEl = document.getElementById('book-count-text');
+      const detailContentEl = document.getElementById('detail-content');
+
+      const cabinetListEl = document.getElementById('cabinet-list');
+      const cabinetCountEl = document.getElementById('cabinet-count-text');
+      const cabinetHeroTitle = document.getElementById('cabinet-hero-title');
+      const cabinetHeroCount = document.getElementById('cabinet-hero-count');
+      const cabinetHeroTotal = document.getElementById('cabinet-hero-total');
+      const cabinetItemsContainer = document.getElementById('cabinet-items-container');
+      const btnToggleGoodsMode = document.getElementById('btn-toggle-goods-mode');
+
+      const meAvatarImg = document.getElementById('me-avatar-img');
+      const meNameText = document.getElementById('me-name-text');
+      const meBioText = document.getElementById('me-bio-text');
+      const meStatBooks = document.getElementById('me-stat-books');
+      const meStatCabinets = document.getElementById('me-stat-cabinets');
+      const meStatItems = document.getElementById('me-stat-items');
+      const meThemeCurrent = document.getElementById('me-theme-current');
+      const meFontDesc = document.getElementById('me-font-desc');
+      const themeOptions = document.querySelectorAll('#me-theme-grid .theme-option');
+
+      const formNavTitle = document.getElementById('form-nav-title');
+      const inputTitle = document.getElementById('input-title');
+      const inputAuthor = document.getElementById('input-author');
+      const inputTag = document.getElementById('input-tag');
+      const formTagsList = document.getElementById('form-tags-list');
+      const inputReview = document.getElementById('input-review');
+      const starScoreLabel = document.getElementById('star-score-label');
+      const starBtns = document.querySelectorAll('#star-picker .star-pick-btn');
+
+      const cabinetModal = document.getElementById('cabinet-modal');
+      const cabinetModalTitle = document.getElementById('cabinet-modal-title');
+      const cabinetCoverPreview = document.getElementById('cabinet-cover-preview');
+      const inputCabinetCover = document.getElementById('input-cabinet-cover');
+      const inputCabinetName = document.getElementById('input-cabinet-name');
+      const inputCabinetIntro = document.getElementById('input-cabinet-intro');
+      const btnCabinetSave = document.getElementById('btn-cabinet-save');
+
+      const itemModal = document.getElementById('item-modal');
+      const itemModalTitle = document.getElementById('item-modal-title');
+      const itemImgPreview = document.getElementById('item-img-preview');
+      const inputItemImg = document.getElementById('input-item-img');
+      const inputItemName = document.getElementById('input-item-name');
+      const inputItemPrice = document.getElementById('input-item-price');
+      const inputItemDate = document.getElementById('input-item-date');
+      const btnDeleteItem = document.getElementById('btn-delete-item');
+      const btnItemSave = document.getElementById('btn-item-save');
+
+      const profileModal = document.getElementById('profile-modal');
+      const profileAvatarPreview = document.getElementById('profile-avatar-preview');
+      const inputProfileAvatar = document.getElementById('input-profile-avatar');
+      const inputProfileName = document.getElementById('input-profile-name');
+      const inputProfileBio = document.getElementById('input-profile-bio');
+
+      const fontModal = document.getElementById('font-modal');
+      const inputFontUrl = document.getElementById('input-font-url');
+      const inputFontFamily = document.getElementById('input-font-family');
+      const inputFontFile = document.getElementById('input-font-file');
+      const fontFileNameLabel = document.getElementById('font-file-name-label');
+
+      const inputImportFile = document.getElementById('input-import-file');
+
+      const summaryMonthLabel = document.getElementById('summary-month-label');
+      const summaryScroll = document.getElementById('summary-scroll');
+
+      const toastEl = document.getElementById('toast');
+      const confirmModal = document.getElementById('confirm-modal');
+      const confirmModalTitle = document.getElementById('confirm-modal-title');
+      const confirmModalDesc = document.getElementById('confirm-modal-desc');
+
+      // ================= 开屏动画控制 =================
+      function dismissSplash() {
+        if (!splashScreen || splashScreen.classList.contains('fade-out')) return;
+        splashScreen.classList.add('fade-out');
+        setTimeout(() => {
+          splashScreen.style.display = 'none';
+        }, 560);
+      }
+      splashScreen.addEventListener('click', dismissSplash);
+
+      // ================= 主题与字体控制 =================
+      function applyTheme(themeKey, notify = false, persist = true) {
+        const validKey = THEME_NAMES[themeKey] ? themeKey : 'bw';
+        currentTheme = validKey;
+        document.documentElement.setAttribute('data-theme', validKey);
+        try { localStorage.setItem(LEGACY_KEYS.theme, validKey); } catch (e) {}
+        if (persist) {
+          idbSet('theme', validKey).catch(() => {});
+        }
+        themeOptions.forEach((opt) => {
+          opt.classList.toggle('active', opt.dataset.themeVal === validKey);
+        });
+        if (meThemeCurrent) {
+          meThemeCurrent.textContent = `当前：${THEME_NAMES[validKey]}`;
+        }
+        if (notify) {
+          showToast(`已切换为「${THEME_NAMES[validKey]}」主题`);
+        }
+      }
+
+      async function applyFontSettings(settings, persist = false) {
+        fontSettings = settings && typeof settings === 'object'
+          ? {
+              mode: settings.mode || 'system',
+              url: settings.url || '',
+              fontFamily: settings.fontFamily || '',
+              fileName: settings.fileName || '',
+              fileData: settings.fileData || ''
+            }
+          : { mode: 'system', url: '', fontFamily: '', fileName: '', fileData: '' };
+
+        const styleEl = document.getElementById('custom-font-style');
+        const linkEl = document.getElementById('custom-font-link');
+        styleEl.textContent = '';
+        linkEl.removeAttribute('href');
+
+        if (fontSettings.mode === 'file' && fontSettings.fileData) {
+          styleEl.textContent = `@font-face { font-family: "CustomUserFont"; src: url("${fontSettings.fileData}"); font-display: swap; }`;
+          document.documentElement.style.setProperty('--app-font', `"CustomUserFont", ${DEFAULT_FONT_STACK}`);
+        } else if (fontSettings.mode === 'url' && fontSettings.url) {
+          const url = fontSettings.url.trim();
+          const isCss = /\.css(\?|$)/i.test(url) || url.includes('fonts.googleapis.com') || url.includes('font.css') || url.includes('result.css');
+          if (isCss) {
+            linkEl.setAttribute('href', url);
+            let familyName = (fontSettings.fontFamily || '').trim();
+            if (!familyName) {
+              const m = url.match(/[?&]family=([^&:]+)/i);
+              if (m && m[1]) {
+                familyName = decodeURIComponent(m[1]).replace(/\+/g, ' ');
+              }
+            }
+            if (!familyName) {
+              try {
+                const resp = await fetch(url);
+                if (resp.ok) {
+                  const cssText = await resp.text();
+                  const fm = cssText.match(/font-family:\s*['"]?([^'";]+)['"]?/i);
+                  if (fm && fm[1]) familyName = fm[1].trim();
+                }
+              } catch (e) {}
+            }
+            if (familyName) {
+              document.documentElement.style.setProperty('--app-font', `"${familyName}", ${DEFAULT_FONT_STACK}`);
+            } else {
+              document.documentElement.style.setProperty('--app-font', DEFAULT_FONT_STACK);
+            }
+          } else {
+            styleEl.textContent = `@font-face { font-family: "CustomUserFont"; src: url("${url}"); font-display: swap; }`;
+            document.documentElement.style.setProperty('--app-font', `"CustomUserFont", ${DEFAULT_FONT_STACK}`);
+          }
+        } else {
+          document.documentElement.style.setProperty('--app-font', DEFAULT_FONT_STACK);
+        }
+
+        if (persist) {
+          await idbSet('fontSettings', fontSettings);
+        }
+        updateFontStatusUI();
+        updateStorageUsageText();
+      }
+
+      function updateFontStatusUI() {
+        if (!meFontDesc) return;
+        if (fontSettings.mode === 'file' && fontSettings.fileData) {
+          meFontDesc.textContent = `当前：本地字体（${fontSettings.fileName || '已上传'}）`;
+        } else if (fontSettings.mode === 'url' && fontSettings.url) {
+          meFontDesc.textContent = `当前：在线字体（${fontSettings.fontFamily || fontSettings.url}）`;
+        } else {
+          meFontDesc.textContent = '当前：系统默认字体';
+        }
+      }
+
+      // ================= 工具函数 =================
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function formatDateTime(ts) {
+        const d = new Date(ts);
+        const pad = (n) => String(n).padStart(2, '0');
+        return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+      }
+
+      function formatTimeHM(ts) {
+        const d = new Date(ts);
+        const pad = (n) => String(n).padStart(2, '0');
+        return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      }
+
+      function getTodayStr() {
+        const d = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+      }
+
+      function formatPrice(num) {
+        const rounded = Math.round((Number(num) || 0) * 100) / 100;
+        if (Number.isInteger(rounded)) {
+          return `¥${rounded}`;
+        }
+        return `¥${rounded.toFixed(2).replace(/0$/, '')}`;
+      }
+
+      function getYearKey(ts) {
+        return String(new Date(ts).getFullYear());
+      }
+
+      function getYearLabel(ts) {
+        return `${new Date(ts).getFullYear()}年`;
+      }
+
+      function getDateKey(ts) {
+        const d = new Date(ts);
+        return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+      }
+
+      function compressImageFile(file, maxSize = 960, quality = 0.85) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+              let w = img.width;
+              let h = img.height;
+              if (w > maxSize || h > maxSize) {
+                if (w > h) {
+                  h = Math.round((h * maxSize) / w);
+                  w = maxSize;
+                } else {
+                  w = Math.round((w * maxSize) / h);
+                  h = maxSize;
+                }
+              }
+              const canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, w, h);
+              resolve(canvas.toDataURL('image/jpeg', quality));
+            };
+            img.onerror = reject;
+            img.src = e.target.result;
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function readFileAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      let toastTimer = null;
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove('show');
+        }, 2200);
+      }
+
+      function openConfirm(title, desc, onConfirm, confirmText = '删除') {
+        confirmModalTitle.textContent = title;
+        confirmModalDesc.textContent = desc;
+        document.getElementById('modal-confirm').textContent = confirmText;
+        pendingConfirmAction = onConfirm;
+        confirmModal.classList.add('show');
+      }
+
+      // ================= 数据持久化（全部基于 IndexedDB） =================
+      async function loadAllData() {
+        let storedBooks = await idbGet('books');
+        if (storedBooks === undefined) {
+          try {
+            const legacy = localStorage.getItem(LEGACY_KEYS.books);
+            storedBooks = legacy ? JSON.parse(legacy) : [];
+            if (Array.isArray(storedBooks) && storedBooks.length > 0) {
+              await idbSet('books', storedBooks);
+            }
+          } catch (e) { storedBooks = []; }
+        }
+        books = Array.isArray(storedBooks) ? storedBooks : [];
+
+        let storedCabinets = await idbGet('cabinets');
+        if (storedCabinets === undefined) {
+          try {
+            const legacy = localStorage.getItem(LEGACY_KEYS.cabinets);
+            storedCabinets = legacy ? JSON.parse(legacy) : [];
+            if (Array.isArray(storedCabinets) && storedCabinets.length > 0) {
+              await idbSet('cabinets', storedCabinets);
+            }
+          } catch (e) { storedCabinets = []; }
+        }
+        cabinets = Array.isArray(storedCabinets) ? storedCabinets : [];
+
+        const storedProfile = await idbGet('profile');
+        if (storedProfile && typeof storedProfile === 'object') {
+          profile = {
+            avatar: storedProfile.avatar || '',
+            name: storedProfile.name || '收藏家',
+            bio: storedProfile.bio || '记录每一次心动阅读与好物'
+          };
+        }
+
+        const storedFont = await idbGet('fontSettings');
+        if (storedFont && typeof storedFont === 'object') {
+          fontSettings = storedFont;
+        }
+
+        let storedTheme = await idbGet('theme');
+        if (!storedTheme) {
+          try { storedTheme = localStorage.getItem(LEGACY_KEYS.theme); } catch (e) {}
+        }
+        applyTheme(storedTheme || 'bw', false, false);
+
+        let storedMode = await idbGet('goodsViewMode');
+        if (!storedMode) {
+          try { storedMode = localStorage.getItem(LEGACY_KEYS.mode); } catch (e) {}
+        }
+        goodsViewMode = storedMode === 'list' ? 'list' : 'grid';
+
+        await applyFontSettings(fontSettings, false);
+        updateStorageUsageText();
+      }
+
+      async function saveBooks() {
+        await idbSet('books', books);
+        updateStorageUsageText();
+      }
+
+      async function saveCabinets() {
+        await idbSet('cabinets', cabinets);
+        updateStorageUsageText();
+      }
+
+      async function saveProfile() {
+        await idbSet('profile', profile);
+        updateStorageUsageText();
+      }
+
+      // ================= 视图与导航切换 =================
+      function switchView(name) {
+        Object.keys(views).forEach((key) => {
+          views[key].classList.toggle('active', key === name);
+        });
+
+        const isMainTab = name === 'home' || name === 'goods' || name === 'me';
+        liquidTabbar.classList.toggle('hidden', !isMainTab);
+        if (isMainTab) {
+          activeTab = name;
+          tabItems.forEach((item) => {
+            item.classList.toggle('active', item.dataset.tab === name);
+          });
+        }
+      }
+
+      // ================= BOOK 逻辑 =================
+      function renderStarsHtml(count, extraClass = '') {
+        let html = `<div class="stars-row ${extraClass}">`;
+        for (let i = 1; i <= 5; i++) {
+          const cls = i <= count ? 'filled' : 'empty';
+          html += `<i data-lucide="star" class="star-icon ${cls}"></i>`;
+        }
+        html += '</div>';
+        return html;
+      }
+
+      function renderHome() {
+        bookCountEl.textContent = `${books.length} 本`;
+
+        if (books.length === 0) {
+          bookListEl.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon-box">
+                <i data-lucide="book-open" width="26" height="26"></i>
+              </div>
+              <h3>暂无阅读记录</h3>
+              <p>点击右上角加号，记录你的第一本小说</p>
+            </div>
+          `;
+          lucide.createIcons();
+          return;
+        }
+
+        const sorted = [...books].sort((a, b) => b.createdAt - a.createdAt);
+        let lastYearKey = null;
+        let lastDateKey = null;
+        const htmlParts = [];
+
+        sorted.forEach((book) => {
+          const yearKey = getYearKey(book.createdAt);
+          const dateKey = getDateKey(book.createdAt);
+
+          if (yearKey !== lastYearKey) {
+            htmlParts.push(`<div class="year-header">${getYearLabel(book.createdAt)}</div>`);
+            lastYearKey = yearKey;
+            lastDateKey = null;
+          }
+
+          const showDate = dateKey !== lastDateKey;
+          lastDateKey = dateKey;
+
+          const d = new Date(book.createdAt);
+          const monthStr = `${d.getMonth() + 1}月`;
+          const dayNum = d.getDate();
+
+          const dateColHtml = showDate
+            ? `<div class="memo-date-col">
+                 <div class="memo-month">${monthStr}</div>
+                 <div class="memo-day">${dayNum}</div>
+               </div>`
+            : `<div class="memo-date-col"></div>`;
+
+          const authorHtml = book.author && book.author.trim()
+            ? `<div class="memo-author">${escapeHtml(book.author)}</div>`
+            : '';
+
+          const tagsHtml = book.tags && book.tags.length > 0
+            ? `<div class="memo-tags">${book.tags.map(t => `<span class="memo-tag-pill">${escapeHtml(t)}</span>`).join('')}</div>`
+            : '';
+
+          const reviewHtml = book.review && book.review.trim()
+            ? `<div class="memo-review">${escapeHtml(book.review)}</div>`
+            : `<div class="memo-review" style="color: var(--text-tertiary);">暂无书评</div>`;
+
+          htmlParts.push(`
+            <article class="memo-row" data-id="${escapeHtml(book.id)}">
+              ${dateColHtml}
+              <div class="memo-body">
+                <div class="memo-title">${escapeHtml(book.title)}</div>
+                ${authorHtml}
+                ${tagsHtml}
+                ${reviewHtml}
+                <div class="memo-meta">
+                  <span>${formatTimeHM(book.createdAt)}</span>
+                  <span>·</span>
+                  ${renderStarsHtml(book.stars, 'memo-stars')}
+                </div>
+              </div>
+            </article>
+          `);
+        });
+
+        bookListEl.innerHTML = htmlParts.join('');
+        lucide.createIcons();
+      }
+
+      function renderDetail(id) {
+        const book = books.find((b) => b.id === id);
+        if (!book) {
+          switchView('home');
+          return;
+        }
+        currentDetailId = id;
+
+        const tagsHtml = book.tags && book.tags.length > 0
+          ? `<div class="detail-section">
+               <div class="detail-section-label">作品标签</div>
+               <div class="tags-wrap">
+                 ${book.tags.map(t => `<span class="tag-pill">${escapeHtml(t)}</span>`).join('')}
+               </div>
+             </div>`
+          : '';
+
+        detailContentEl.innerHTML = `
+          <div class="detail-header">
+            <h2 class="detail-title">${escapeHtml(book.title)}</h2>
+            <div class="detail-author">${escapeHtml(book.author)}</div>
+            <div class="detail-rating-bar">
+              ${renderStarsHtml(book.stars)}
+              <span style="font-size:13px;color:var(--text-secondary);font-weight:600;">${book.stars}.0</span>
+            </div>
+          </div>
+
+          ${tagsHtml}
+
+          <div class="detail-section">
+            <div class="detail-section-label">书评</div>
+            <div class="detail-review-text">${book.review && book.review.trim() ? escapeHtml(book.review) : '<span style="color:var(--text-tertiary);">未填写书评内容</span>'}</div>
+          </div>
+
+          <div class="detail-meta-info">
+            <span class="time-text">
+              <i data-lucide="calendar" width="13" height="13"></i>
+              添加时间：${formatDateTime(book.createdAt)}
+            </span>
+            ${book.updatedAt ? `
+              <span class="time-text">
+                <i data-lucide="edit-3" width="13" height="13"></i>
+                最后编辑：${formatDateTime(book.updatedAt)}
+              </span>
+            ` : ''}
+          </div>
+        `;
+
+        lucide.createIcons();
+      }
+
+      function renderFormTags() {
+        if (formTags.length === 0) {
+          formTagsList.innerHTML = '';
+          return;
+        }
+        formTagsList.innerHTML = formTags.map((tag, index) => `
+          <span class="form-tag-chip">
+            <span>${escapeHtml(tag)}</span>
+            <button type="button" class="form-tag-remove" data-index="${index}" aria-label="移除标签">
+              <i data-lucide="x" width="13" height="13"></i>
+            </button>
+          </span>
+        `).join('');
+        lucide.createIcons();
+      }
+
+      function updateStarPickerUI() {
+        starBtns.forEach((btn) => {
+          const val = Number(btn.dataset.star);
+          btn.classList.toggle('active', val <= formStars);
+        });
+        starScoreLabel.textContent = `${formStars} 颗星`;
+      }
+
+      function openForm(mode, bookId = null) {
+        if (mode === 'edit' && bookId) {
+          const book = books.find((b) => b.id === bookId);
+          if (!book) return;
+          editingId = bookId;
+          formReturnTarget = 'detail';
+          formNavTitle.textContent = '编辑记录';
+          inputTitle.value = book.title;
+          inputAuthor.value = book.author;
+          formTags = Array.isArray(book.tags) ? [...book.tags] : [];
+          formStars = book.stars || 5;
+          inputReview.value = book.review || '';
+        } else {
+          editingId = null;
+          formReturnTarget = 'home';
+          formNavTitle.textContent = '添加记录';
+          inputTitle.value = '';
+          inputAuthor.value = '';
+          formTags = [];
+          formStars = 5;
+          inputReview.value = '';
+        }
+
+        inputTag.value = '';
+        renderFormTags();
+        updateStarPickerUI();
+        switchView('form');
+      }
+
+      function addTagFromInput() {
+        const raw = inputTag.value.trim();
+        if (!raw) return;
+        const pieces = raw.split(/[,，、\s]+/).map(s => s.trim()).filter(Boolean);
+        pieces.forEach((p) => {
+          if (!formTags.includes(p)) {
+            formTags.push(p);
+          }
+        });
+        inputTag.value = '';
+        renderFormTags();
+      }
+
+      // ================= GOODS 周边柜逻辑 =================
+      function getCabinetStats(cabinet) {
+        const items = Array.isArray(cabinet.items) ? cabinet.items : [];
+        const total = items.reduce((sum, it) => sum + (Number(it.price) || 0), 0);
+        return {
+          count: items.length,
+          total: Math.round(total * 100) / 100
+        };
+      }
+
+      function renderGoodsList() {
+        cabinetCountEl.textContent = `${cabinets.length} 柜`;
+
+        if (cabinets.length === 0) {
+          cabinetListEl.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon-box">
+                <i data-lucide="archive" width="26" height="26"></i>
+              </div>
+              <h3>暂无周边柜</h3>
+              <p>点击右上角加号，创建你的第一个周边柜</p>
+            </div>
+          `;
+          lucide.createIcons();
+          return;
+        }
+
+        const sorted = [...cabinets].sort((a, b) => b.createdAt - a.createdAt);
+
+        cabinetListEl.innerHTML = sorted.map((cab) => {
+          const stats = getCabinetStats(cab);
+          const coverSrc = cab.cover || DEFAULT_CABINET_COVER;
+          const introHtml = cab.intro && cab.intro.trim()
+            ? `<div class="cabinet-intro">${escapeHtml(cab.intro)}</div>`
+            : '';
+
+          return `
+            <article class="cabinet-row" data-cabinet-id="${escapeHtml(cab.id)}">
+              <img class="cabinet-cover" src="${coverSrc}" alt="${escapeHtml(cab.name)}" />
+              <div class="cabinet-info">
+                <div class="cabinet-name">${escapeHtml(cab.name)}</div>
+                ${introHtml}
+                <div class="cabinet-stats">
+                  <span>共 ${stats.count} 件</span>
+                  <span>·</span>
+                  <span class="cabinet-price">总价 ${formatPrice(stats.total)}</span>
+                </div>
+              </div>
+              <i class="cabinet-chevron" data-lucide="chevron-right" width="16" height="16"></i>
+            </article>
+          `;
+        }).join('');
+
+        lucide.createIcons();
+      }
+
+      function renderCabinetDetail(cabinetId) {
+        const cab = cabinets.find((c) => c.id === cabinetId);
+        if (!cab) {
+          switchView('goods');
+          return;
+        }
+        currentCabinetId = cabinetId;
+        const stats = getCabinetStats(cab);
+
+        cabinetHeroTitle.textContent = cab.name;
+        cabinetHeroCount.textContent = `共 ${stats.count} 件`;
+        cabinetHeroTotal.textContent = `总价 ${formatPrice(stats.total)}`;
+
+        btnToggleGoodsMode.innerHTML = goodsViewMode === 'grid'
+          ? `<i data-lucide="list" width="15" height="15"></i><span>列表</span>`
+          : `<i data-lucide="layout-grid" width="15" height="15"></i><span>三列</span>`;
+
+        const items = Array.isArray(cab.items) ? [...cab.items] : [];
+
+        if (items.length === 0) {
+          cabinetItemsContainer.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon-box">
+                <i data-lucide="sparkles" width="26" height="26"></i>
+              </div>
+              <h3>周边柜空空的</h3>
+              <p>点击右下角加号，收入第一件周边</p>
+            </div>
+          `;
+          lucide.createIcons();
+          return;
+        }
+
+        items.sort((a, b) => {
+          if (a.date !== b.date) {
+            return (b.date || '').localeCompare(a.date || '');
+          }
+          return (b.createdAt || 0) - (a.createdAt || 0);
+        });
+
+        if (goodsViewMode === 'grid') {
+          cabinetItemsContainer.innerHTML = `
+            <div class="goods-grid">
+              ${items.map((it) => `
+                <div class="goods-grid-item" data-item-id="${escapeHtml(it.id)}">
+                  <img class="goods-grid-img" src="${it.image || DEFAULT_ITEM_IMG}" alt="${escapeHtml(it.name)}" />
+                  <div class="goods-grid-meta">
+                    <div class="goods-grid-name">${escapeHtml(it.name)}</div>
+                    <div class="goods-grid-price">${formatPrice(it.price)}</div>
+                    <div class="goods-grid-date">${escapeHtml(it.date || '')}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        } else {
+          cabinetItemsContainer.innerHTML = `
+            <div class="goods-list">
+              ${items.map((it) => `
+                <div class="goods-list-row" data-item-id="${escapeHtml(it.id)}">
+                  <img class="goods-list-img" src="${it.image || DEFAULT_ITEM_IMG}" alt="${escapeHtml(it.name)}" />
+                  <div class="goods-list-info">
+                    <div class="goods-list-name">${escapeHtml(it.name)}</div>
+                    <div class="goods-list-sub">
+                      <span class="goods-list-price">${formatPrice(it.price)}</span>
+                      <span class="goods-list-date">${escapeHtml(it.date || '')}</span>
+                    </div>
+                  </div>
+                  <i class="cabinet-chevron" data-lucide="chevron-right" width="15" height="15"></i>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        lucide.createIcons();
+      }
+
+      // ================= 我的主页 (ME) 逻辑 =================
+      function renderMe() {
+        meAvatarImg.src = profile.avatar || DEFAULT_AVATAR_IMG;
+        meNameText.textContent = profile.name || '收藏家';
+        meBioText.textContent = profile.bio || '记录每一次心动阅读与好物';
+
+        const totalItems = cabinets.reduce((sum, cab) => sum + (Array.isArray(cab.items) ? cab.items.length : 0), 0);
+        meStatBooks.textContent = books.length;
+        meStatCabinets.textContent = cabinets.length;
+        meStatItems.textContent = totalItems;
+
+        updateFontStatusUI();
+        updateStorageUsageText();
+      }
+
+      // ================= 统一极简 iOS 风格：多角度长版月度总结逻辑 =================
+      function getMonthBooks(year, month) {
+        return books.filter((b) => {
+          const d = new Date(b.createdAt);
+          return d.getFullYear() === year && (d.getMonth() + 1) === month;
+        });
+      }
+
+      function getMonthGoods(year, month) {
+        const prefix = `${year}-${String(month).padStart(2, '0')}`;
+        const list = [];
+        cabinets.forEach((cab) => {
+          (cab.items || []).forEach((it) => {
+            let match = false;
+            if (it.date && typeof it.date === 'string' && it.date.startsWith(prefix)) {
+              match = true;
+            } else if (!it.date && it.createdAt) {
+              const d = new Date(it.createdAt);
+              if (d.getFullYear() === year && (d.getMonth() + 1) === month) match = true;
+            }
+            if (match) {
+              list.push({
+                ...it,
+                cabinetName: cab.name,
+                numPrice: Number(it.price) || 0
+              });
+            }
+          });
+        });
+        return list;
+      }
+
+      function getPrevYearMonth(year, month) {
+        if (month === 1) return { year: year - 1, month: 12 };
+        return { year, month: month - 1 };
+      }
+
+      function formatDiffBadge(diff, unit = '') {
+        if (diff > 0) return `较上月 +${diff}${unit}`;
+        if (diff < 0) return `较上月 ${diff}${unit}`;
+        return `与上月持平`;
+      }
+
+      function formatPriceDiffBadge(diff) {
+        const rounded = Math.round(diff * 100) / 100;
+        if (rounded > 0) return `较上月 +${formatPrice(rounded)}`;
+        if (rounded < 0) return `较上月 -${formatPrice(Math.abs(rounded))}`;
+        return `与上月持平`;
+      }
+
+      function renderMonthlySummary() {
+        summaryMonthLabel.textContent = `${summaryYear}年${summaryMonth}月`;
+        const mBooks = getMonthBooks(summaryYear, summaryMonth).sort((a, b) => b.createdAt - a.createdAt);
+        const mGoods = getMonthGoods(summaryYear, summaryMonth).sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.createdAt || 0) - (a.createdAt || 0));
+
+        const prevYM = getPrevYearMonth(summaryYear, summaryMonth);
+        const prevBooks = getMonthBooks(prevYM.year, prevYM.month);
+        const prevGoods = getMonthGoods(prevYM.year, prevYM.month);
+        const prevGoodsCost = prevGoods.reduce((s, it) => s + it.numPrice, 0);
+
+        // 1. 书籍多维度计算
+        const bookCount = mBooks.length;
+        const avgStarsNum = bookCount > 0
+          ? mBooks.reduce((s, b) => s + (Number(b.stars) || 0), 0) / bookCount
+          : 0;
+        const avgStars = avgStarsNum.toFixed(1);
+
+        const starCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+        const readDaysSet = new Set();
+        const timeSlots = { '清晨 5-11点': 0, '午后 12-17点': 0, '夜间 18-23点': 0, '深夜 0-4点': 0 };
+        const authorMap = {};
+        const tagCounts = {};
+        let totalReviewChars = 0;
+        let bestReviewBook = null;
+
+        mBooks.forEach((b) => {
+          const st = Math.min(5, Math.max(1, Number(b.stars) || 5));
+          starCounts[st] += 1;
+
+          const d = new Date(b.createdAt);
+          readDaysSet.add(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
+
+          const hr = d.getHours();
+          if (hr >= 5 && hr <= 11) timeSlots['清晨 5-11点'] += 1;
+          else if (hr >= 12 && hr <= 17) timeSlots['午后 12-17点'] += 1;
+          else if (hr >= 18 && hr <= 23) timeSlots['夜间 18-23点'] += 1;
+          else timeSlots['深夜 0-4点'] += 1;
+
+          const author = (b.author || '').trim();
+          if (author) authorMap[author] = (authorMap[author] || 0) + 1;
+
+          (b.tags || []).forEach((t) => {
+            tagCounts[t] = (tagCounts[t] || 0) + 1;
+          });
+
+          const len = (b.review || '').trim().length;
+          totalReviewChars += len;
+          if (!bestReviewBook || len > (bestReviewBook.review || '').trim().length) {
+            bestReviewBook = b;
+          }
+        });
+
+        const avgReviewChars = bookCount > 0 ? Math.round(totalReviewChars / bookCount) : 0;
+        const uniqueAuthors = Object.keys(authorMap);
+        const topAuthorEntry = Object.entries(authorMap).sort((a, b) => b[1] - a[1])[0];
+        const topTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]).slice(0, 8);
+        const topTimeSlot = Object.entries(timeSlots).sort((a, b) => b[1] - a[1])[0];
+        const fiveStarBooks = mBooks.filter((b) => Number(b.stars) === 5);
+
+        // 2. 周边多维度计算
+        const goodsCount = mGoods.length;
+        const goodsTotalCost = Math.round(mGoods.reduce((s, it) => s + it.numPrice, 0) * 100) / 100;
+        const goodsAvgCost = goodsCount > 0 ? Math.round((goodsTotalCost / goodsCount) * 100) / 100 : 0;
+
+        // 全库总花费占比
+        const allTimeGoodsCost = cabinets.reduce((sum, cab) => {
+          return sum + (cab.items || []).reduce((s2, it) => s2 + (Number(it.price) || 0), 0);
+        }, 0);
+        const monthSharePercent = allTimeGoodsCost > 0
+          ? Math.round((goodsTotalCost / allTimeGoodsCost) * 1000) / 10
+          : 0;
+
+        const daysInMonth = new Date(summaryYear, summaryMonth, 0).getDate();
+        const dailyAvgCost = Math.round((goodsTotalCost / daysInMonth) * 100) / 100;
+
+        // 价格区间分布
+        const priceBuckets = [
+          { label: '¥50 以下', count: 0, total: 0 },
+          { label: '¥50 - 150', count: 0, total: 0 },
+          { label: '¥150 以上', count: 0, total: 0 }
+        ];
+
+        let mostExpensive = null;
+        let cheapest = null;
+        const cabSpendMap = {};
+        const daySpendMap = {};
+
+        mGoods.forEach((it) => {
+          if (it.numPrice < 50) {
+            priceBuckets[0].count += 1;
+            priceBuckets[0].total += it.numPrice;
+          } else if (it.numPrice <= 150) {
+            priceBuckets[1].count += 1;
+            priceBuckets[1].total += it.numPrice;
+          } else {
+            priceBuckets[2].count += 1;
+            priceBuckets[2].total += it.numPrice;
+          }
+
+          if (!mostExpensive || it.numPrice > mostExpensive.numPrice) mostExpensive = it;
+          if (!cheapest || it.numPrice < cheapest.numPrice) cheapest = it;
+
+          if (!cabSpendMap[it.cabinetName]) cabSpendMap[it.cabinetName] = { count: 0, total: 0 };
+          cabSpendMap[it.cabinetName].count += 1;
+          cabSpendMap[it.cabinetName].total += it.numPrice;
+
+          const dayKey = it.date || '未知日期';
+          if (!daySpendMap[dayKey]) daySpendMap[dayKey] = { count: 0, total: 0 };
+          daySpendMap[dayKey].count += 1;
+          daySpendMap[dayKey].total += it.numPrice;
+        });
+
+        const cabinetEntries = Object.entries(cabSpendMap).sort((a, b) => b[1].total - a[1].total || b[1].count - a[1].count);
+        const peakDayEntry = Object.entries(daySpendMap).sort((a, b) => b[1].total - a[1].total || b[1].count - a[1].count)[0];
+        const activeBuyDays = Object.keys(daySpendMap).length;
+
+        // 3. 多角度文字评语生成
+        let bookInsight = '';
+        if (bookCount === 0) {
+          bookInsight = '本月暂未新增阅读记录。如果工作或生活较忙碌，也可以从短篇或旧书重温开始，保留每天十分钟的阅读微光。';
+        } else {
+          const paceDesc = bookCount >= 5 ? '阅读产出非常高频，精神世界十分丰盈' : bookCount >= 2 ? '保持着稳健而舒适的阅读节奏' : '属于精读慢品的一月';
+          const slotDesc = topTimeSlot && topTimeSlot[1] > 0 ? `你最常在「${topTimeSlot[0]}」记录读后感` : '';
+          const ratingDesc = avgStarsNum >= 4.2 ? '本月选书眼光精准，整体满意度极高' : avgStarsNum >= 3.2 ? '本月作品风格多元，好坏参半也是阅读乐趣' : '本月遭遇了几本略显平淡的作品，下月继续淘好书';
+          bookInsight = `本月共读完 ${bookCount} 本书，${paceDesc}。${slotDesc}；平均评分 ${avgStars} 星，${ratingDesc}。`;
+        }
+
+        let goodsInsight = '';
+        if (goodsCount === 0) {
+          goodsInsight = '本月周边柜没有新增支出，完美实现了零消费守卫。把预算留给未来真正让你一眼心动的大件吧。';
+        } else {
+          const avgDesc = goodsAvgCost >= 150 ? '偏向重磅精致单品收藏' : goodsAvgCost >= 50 ? '以中等价位常规周边为主' : '主打高性价比的日常小确幸';
+          const cabDesc = cabinetEntries.length > 0 ? `支出重心集中在「${cabinetEntries[0][0]}」` : '';
+          goodsInsight = `本月共收入 ${goodsCount} 件周边，累计消费 ${formatPrice(goodsTotalCost)}，单件均价 ${formatPrice(goodsAvgCost)}（${avgDesc}）。${cabDesc}，占你全部周边累计投入的 ${monthSharePercent}%。`;
+        }
+
+        let overallInsight = '';
+        if (bookCount > 0 && goodsCount > 0) {
+          const ratioText = bookCount >= goodsCount ? '精神食粮的摄入跑赢了周边数量' : '实体周边的收获比阅读更加热闹';
+          overallInsight = `回顾 ${summaryYear} 年 ${summaryMonth} 月，你一共记录了 ${bookCount} 本读物与 ${goodsCount} 件周边，${ratioText}。阅读时写下的 ${totalReviewChars} 字感想，和周边柜里新增的每一件心爱之物，都在认真记录这个月独一无二的热爱轨迹。`;
+        } else if (bookCount > 0) {
+          overallInsight = `回顾 ${summaryYear} 年 ${summaryMonth} 月，你的专注力完全投向了文字世界，共留下 ${bookCount} 本阅读足迹与 ${totalReviewChars} 字思考，沉静而充实。`;
+        } else if (goodsCount > 0) {
+          overallInsight = `回顾 ${summaryYear} 年 ${summaryMonth} 月，你为生活添置了 ${goodsCount} 件心头好，共计 ${formatPrice(goodsTotalCost)}，在实体收藏里收获了满满的治愈感。`;
+        } else {
+          overallInsight = `${summaryYear} 年 ${summaryMonth} 月暂时是一段留白的日子。无论忙碌还是休息，随时回来记录你的下一本书或下一件好物。`;
+        }
+
+        summaryScroll.innerHTML = `
+          <!-- 1. 本月总览与环比 -->
+          <div class="summary-hero-card">
+            <div class="summary-hero-top">
+              <div class="summary-hero-title">${summaryYear}年${summaryMonth}月报告</div>
+              <span class="summary-hero-user">${escapeHtml(profile.name || '收藏家')}</span>
+            </div>
+            <div class="summary-hero-grid">
+              <div class="summary-kpi-box">
+                <div class="summary-kpi-val">${bookCount} 本</div>
+                <div class="summary-kpi-lbl">本月阅读</div>
+              </div>
+              <div class="summary-kpi-box">
+                <div class="summary-kpi-val">${goodsCount} 件</div>
+                <div class="summary-kpi-lbl">入手周边</div>
+              </div>
+              <div class="summary-kpi-box">
+                <div class="summary-kpi-val accent">${formatPrice(goodsTotalCost)}</div>
+                <div class="summary-kpi-lbl">周边支出</div>
+              </div>
+            </div>
+            <div class="summary-mom-bar">
+              <span>阅读：${formatDiffBadge(bookCount - prevBooks.length, ' 本')}</span>
+              <span>周边：${formatDiffBadge(goodsCount - prevGoods.length, ' 件')} · ${formatPriceDiffBadge(goodsTotalCost - prevGoodsCost)}</span>
+            </div>
+          </div>
+
+          <!-- 2. 阅读维度深度分析 -->
+          <div class="summary-card">
+            <div class="summary-card-head">
+              <div class="summary-card-title-wrap">
+                <span class="summary-card-icon"><i data-lucide="book-open" width="16" height="16"></i></span>
+                <span class="summary-card-title">阅读深度分析</span>
+              </div>
+              <span class="summary-card-badge">${bookCount} 本记录</span>
+            </div>
+
+            <div class="summary-insight">${bookInsight}</div>
+
+            <div class="summary-mini-metrics">
+              <div class="summary-mini-metric">
+                <div class="summary-mini-metric-lbl">平均评分</div>
+                <div class="summary-mini-metric-val">${bookCount > 0 ? `${avgStars} 星` : '暂无'}</div>
+              </div>
+              <div class="summary-mini-metric">
+                <div class="summary-mini-metric-lbl">记录活跃天数</div>
+                <div class="summary-mini-metric-val">${readDaysSet.size} 天</div>
+              </div>
+              <div class="summary-mini-metric">
+                <div class="summary-mini-metric-lbl">书评总字数</div>
+                <div class="summary-mini-metric-val">${totalReviewChars} 字</div>
+              </div>
+              <div class="summary-mini-metric">
+                <div class="summary-mini-metric-lbl">篇均书评长度</div>
+                <div class="summary-mini-metric-val">${avgReviewChars} 字</div>
+              </div>
+            </div>
+
+            <div class="summary-sub-heading">星级评分分布</div>
+            <div class="summary-bar-list">
+              ${[5, 4, 3, 2, 1].map((s) => {
+                const cnt = starCounts[s];
+                const pct = bookCount > 0 ? Math.round((cnt / bookCount) * 100) : 0;
+                return `
+                  <div class="summary-bar-row">
+                    <span class="summary-bar-label">${s} 颗星</span>
+                    <div class="summary-bar-track"><div class="summary-bar-fill" style="width:${pct}%"></div></div>
+                    <span class="summary-bar-val">${cnt} 本 (${pct}%)</span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <div class="summary-sub-heading">阅读记录时段倾向</div>
+            <div class="summary-bar-list">
+              ${Object.entries(timeSlots).map(([slot, cnt]) => {
+                const pct = bookCount > 0 ? Math.round((cnt / bookCount) * 100) : 0;
+                return `
+                  <div class="summary-bar-row">
+                    <span class="summary-bar-label">${slot}</span>
+                    <div class="summary-bar-track"><div class="summary-bar-fill" style="width:${pct}%"></div></div>
+                    <span class="summary-bar-val">${cnt} 本 (${pct}%)</span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            <div class="summary-sub-heading">作者与内容偏好</div>
+            <div class="summary-kv-list">
+              <div class="summary-kv-row">
+                <span class="summary-k">阅读作者数</span>
+                <span class="summary-v">${uniqueAuthors.length} 位不同作者</span>
+              </div>
+              <div class="summary-kv-row">
+                <span class="summary-k">高频作者</span>
+                <span class="summary-v">${topAuthorEntry ? `${escapeHtml(topAuthorEntry[0])}（${topAuthorEntry[1]} 本）` : '暂无'}</span>
+              </div>
+              <div class="summary-kv-row">
+                <span class="summary-k">五星推荐书目</span>
+                <span class="summary-v">${fiveStarBooks.length > 0 ? fiveStarBooks.map(b => `《${escapeHtml(b.title)}》`).join('、') : '本月暂无五星'}</span>
+              </div>
+            </div>
+
+            ${topTags.length > 0 ? `
+              <div class="summary-sub-heading">本月高频标签</div>
+              <div class="tags-wrap">
+                ${topTags.map(([tag, cnt]) => `<span class="tag-pill">${escapeHtml(tag)} · ${cnt}</span>`).join('')}
+              </div>
+            ` : ''}
+
+            ${bestReviewBook && (bestReviewBook.review || '').trim() ? `
+              <div class="summary-sub-heading">本月最长书评摘录</div>
+              <div class="summary-quote-box">
+                <div class="summary-quote-title">《${escapeHtml(bestReviewBook.title)}》 · ${escapeHtml(bestReviewBook.author)}（${(bestReviewBook.review || '').trim().length} 字）</div>
+                <div class="summary-quote-text">${escapeHtml(bestReviewBook.review.trim().slice(0, 180))}${bestReviewBook.review.trim().length > 180 ? '...' : ''}</div>
+              </div>
+            ` : ''}
+
+            ${bookCount > 0 ? `
+              <div class="summary-sub-heading">本月阅读书单明细</div>
+              <div class="summary-records-list">
+                ${mBooks.map((b) => {
+                  const d = new Date(b.createdAt);
+                  const dateTxt = `${d.getMonth() + 1}月${d.getDate()}日`;
+                  return `
+                    <div class="summary-record-row">
+                      <div class="summary-record-main">
+                        <div class="summary-record-title">${escapeHtml(b.title)}</div>
+                        <div class="summary-record-sub">${escapeHtml(b.author)} · ${dateTxt}</div>
+                      </div>
+                      <div class="summary-record-right">${b.stars}.0 ★</div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- 3. 周边消费与收藏维度 -->
+          <div class="summary-card">
+            <div class="summary-card-head">
+              <div class="summary-card-title-wrap">
+                <span class="summary-card-icon"><i data-lucide="archive" width="16" height="16"></i></span>
+                <span class="summary-card-title">周边消费与收藏分析</span>
+              </div>
+              <span class="summary-card-badge">${formatPrice(goodsTotalCost)}</span>
+            </div>
+
+            <div class="summary-insight">${goodsInsight}</div>
+
+            <div class="summary-mini-metrics">
+              <div class="summary-mini-metric">
+                <div class="summary-mini-metric-lbl">单件均价</div>
+                <div class="summary-mini-metric-val">${goodsCount > 0 ? formatPrice(goodsAvgCost) : '¥0'}</div>
+              </div>
+              <div class="summary-mini-metric">
+                <div class="summary-mini-metric-lbl">当月日均参考</div>
+                <div class="summary-mini-metric-val">${formatPrice(dailyAvgCost)}/天</div>
+              </div>
+              <div class="summary-mini-metric">
+                <div class="summary-mini-metric-lbl">购入活跃天数</div>
+                <div class="summary-mini-metric-val">${activeBuyDays} 天</div>
+              </div>
+              <div class="summary-mini-metric">
+                <div class="summary-mini-metric-lbl">占总库花费比例</div>
+                <div class="summary-mini-metric-val">${monthSharePercent}%</div>
+              </div>
+            </div>
+
+            <div class="summary-sub-heading">单品价格区间分布</div>
+            <div class="summary-bar-list">
+              ${priceBuckets.map((bk) => {
+                const pct = goodsCount > 0 ? Math.round((bk.count / goodsCount) * 100) : 0;
+                return `
+                  <div class="summary-bar-row">
+                    <span class="summary-bar-label">${bk.label}</span>
+                    <div class="summary-bar-track"><div class="summary-bar-fill" style="width:${pct}%"></div></div>
+                    <span class="summary-bar-val">${bk.count} 件 (${pct}%)</span>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+
+            ${mostExpensive ? `
+              <div class="summary-sub-heading">本月最贵单品</div>
+              <div class="summary-highlight-item">
+                <img class="summary-highlight-img" src="${mostExpensive.image || DEFAULT_ITEM_IMG}" alt="${escapeHtml(mostExpensive.name)}" />
+                <div class="summary-highlight-info">
+                  <span class="summary-highlight-tag">本月 TOP 1</span>
+                  <div class="summary-highlight-name">${escapeHtml(mostExpensive.name)}</div>
+                  <div class="summary-highlight-meta">所属柜子：${escapeHtml(mostExpensive.cabinetName)} · ${escapeHtml(mostExpensive.date || '')}</div>
+                  <div class="summary-highlight-price">${formatPrice(mostExpensive.numPrice)}</div>
+                </div>
+              </div>
+            ` : ''}
+
+            <div class="summary-sub-heading">消费极值与峰值</div>
+            <div class="summary-kv-list">
+              <div class="summary-kv-row">
+                <span class="summary-k">最平价入手</span>
+                <span class="summary-v">${cheapest ? `${escapeHtml(cheapest.name)}（${formatPrice(cheapest.numPrice)}）` : '暂无'}</span>
+              </div>
+              <div class="summary-kv-row">
+                <span class="summary-k">单日最高消费日</span>
+                <span class="summary-v">${peakDayEntry ? `${peakDayEntry[0]}（${peakDayEntry[1].count} 件 / ${formatPrice(peakDayEntry[1].total)}）` : '暂无'}</span>
+              </div>
+              <div class="summary-kv-row">
+                <span class="summary-k">涉及周边柜数量</span>
+                <span class="summary-v">${cabinetEntries.length} 个柜子</span>
+              </div>
+            </div>
+
+            ${cabinetEntries.length > 0 ? `
+              <div class="summary-sub-heading">各周边柜本月贡献榜</div>
+              <div class="summary-bar-list">
+                ${cabinetEntries.map(([cabName, stat]) => {
+                  const pct = goodsTotalCost > 0 ? Math.round((stat.total / goodsTotalCost) * 100) : (goodsCount > 0 ? Math.round((stat.count / goodsCount) * 100) : 0);
+                  return `
+                    <div class="summary-bar-row">
+                      <span class="summary-bar-label">${escapeHtml(cabName)}</span>
+                      <div class="summary-bar-track"><div class="summary-bar-fill" style="width:${pct}%"></div></div>
+                      <span class="summary-bar-val">${formatPrice(stat.total)}</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            ` : ''}
+
+            ${goodsCount > 0 ? `
+              <div class="summary-sub-heading">本月入手周边清单</div>
+              <div class="summary-records-list">
+                ${mGoods.map((it) => `
+                  <div class="summary-record-row">
+                    <img class="summary-record-thumb" src="${it.image || DEFAULT_ITEM_IMG}" alt="${escapeHtml(it.name)}" />
+                    <div class="summary-record-main">
+                      <div class="summary-record-title">${escapeHtml(it.name)}</div>
+                      <div class="summary-record-sub">${escapeHtml(it.cabinetName)} · ${escapeHtml(it.date || '')}</div>
+                    </div>
+                    <div class="summary-record-right">${formatPrice(it.numPrice)}</div>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- 4. 本月综合小结 -->
+          <div class="summary-card">
+            <div class="summary-card-head">
+              <div class="summary-card-title-wrap">
+                <span class="summary-card-icon"><i data-lucide="sparkles" width="16" height="16"></i></span>
+                <span class="summary-card-title">本月生活节奏小结</span>
+              </div>
+            </div>
+            <div class="summary-insight" style="margin-bottom:0;">${overallInsight}</div>
+          </div>
+        `;
+
+        lucide.createIcons();
+      }
+
+      // ================= 弹窗打开控制 =================
+      function openCabinetModal(mode = 'add', cabId = null) {
+        if (mode === 'edit' && cabId) {
+          const cab = cabinets.find((c) => c.id === cabId);
+          if (!cab) return;
+          editingCabinetId = cabId;
+          cabinetModalTitle.textContent = '编辑周边柜';
+          btnCabinetSave.textContent = '保存';
+          inputCabinetName.value = cab.name;
+          inputCabinetIntro.value = cab.intro || '';
+          tempCabinetCover = cab.cover || '';
+        } else {
+          editingCabinetId = null;
+          cabinetModalTitle.textContent = '新建周边柜';
+          btnCabinetSave.textContent = '添加';
+          inputCabinetName.value = '';
+          inputCabinetIntro.value = '';
+          tempCabinetCover = '';
+        }
+        cabinetCoverPreview.src = tempCabinetCover || DEFAULT_CABINET_COVER;
+        inputCabinetCover.value = '';
+        cabinetModal.classList.add('show');
+      }
+
+      function openItemModal(mode = 'add', itemId = null) {
+        const cab = cabinets.find((c) => c.id === currentCabinetId);
+        if (!cab) return;
+
+        if (mode === 'edit' && itemId) {
+          const it = (cab.items || []).find((x) => x.id === itemId);
+          if (!it) return;
+          editingItemId = itemId;
+          itemModalTitle.textContent = '编辑周边';
+          btnItemSave.textContent = '保存';
+          btnDeleteItem.style.display = 'inline-flex';
+          inputItemName.value = it.name || '';
+          inputItemPrice.value = it.price !== undefined ? it.price : '';
+          inputItemDate.value = it.date || getTodayStr();
+          tempItemImg = it.image || '';
+        } else {
+          editingItemId = null;
+          itemModalTitle.textContent = '添加周边';
+          btnItemSave.textContent = '添加';
+          btnDeleteItem.style.display = 'none';
+          inputItemName.value = '';
+          inputItemPrice.value = '';
+          inputItemDate.value = getTodayStr();
+          tempItemImg = '';
+        }
+        itemImgPreview.src = tempItemImg || DEFAULT_ITEM_IMG;
+        inputItemImg.value = '';
+        itemModal.classList.add('show');
+      }
+
+      function openProfileModal() {
+        tempAvatar = profile.avatar || '';
+        profileAvatarPreview.src = tempAvatar || DEFAULT_AVATAR_IMG;
+        inputProfileAvatar.value = '';
+        inputProfileName.value = profile.name || '';
+        inputProfileBio.value = profile.bio || '';
+        profileModal.classList.add('show');
+      }
+
+      function openFontModal() {
+        inputFontUrl.value = fontSettings.mode === 'url' ? (fontSettings.url || '') : '';
+        inputFontFamily.value = fontSettings.mode === 'url' ? (fontSettings.fontFamily || '') : '';
+        tempFontFileData = fontSettings.mode === 'file' ? (fontSettings.fileData || '') : '';
+        tempFontFileName = fontSettings.mode === 'file' ? (fontSettings.fileName || '') : '';
+        fontFileNameLabel.textContent = tempFontFileName || '未选择本地字体文件';
+        inputFontFile.value = '';
+        fontModal.classList.add('show');
+      }
+
+      // ================= 导出与导入全部数据 =================
+      async function exportAllData() {
+  const payload = {
+    app: 'book-and-goods',
+    version: 2,
+    exportedAt: new Date().toISOString(),
+    data: { books, cabinets, profile, theme: currentTheme, goodsViewMode, fontSettings }
+  };
+  const jsonStr = JSON.stringify(payload, null, 2);
+  const now = new Date();
+  const fileName = `book goods ${now.getMonth() + 1}月${now.getDate()}号备份.json`;
+  const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+  const file = new File([blob], fileName, { type: 'application/json' });
+
+  // 1. 手机端首选：调用 iOS / 安卓系统原生分享面板（iOS 可直接点“存储到文件”）
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title: fileName });
+      showToast('请在系统面板中选择保存位置');
+      return;
+    } catch (e) {
+      if (e.name === 'AbortError') return; // 用户主动取消
+    }
+  }
+
+  // 2. 安卓 Chrome / 桌面端：直接呼出本地文件夹保存框
+  if (window.showSaveFilePicker) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: fileName,
+        types: [{ description: 'JSON 备份文件', accept: { 'application/json': ['.json'] } }]
+      });
+      const writable = await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      showToast(`已保存：${fileName}`);
+      return;
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+    }
+  }
+
+  // 3. 普通浏览器标准下载（若在极严苛的 WebView 里可能被忽略）
+  try {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+    showToast(`已触发下载：${fileName}`);
+    return;
+  } catch (e) {}
+
+  // 4. 终极兜底：如果该 App 彻底禁止文件写入，复制到剪贴板
+  try {
+    await navigator.clipboard.writeText(jsonStr);
+    showToast('当前环境禁止下载，已将备份内容复制到剪贴板');
+  } catch (e) {
+    showToast('当前 App 限制了文件导出，请用系统自带浏览器打开');
+  }
+}
+
+      async function handleImportFile(file) {
+        if (!file) return;
+        try {
+          const text = await file.text();
+          const parsed = JSON.parse(text);
+          const source = parsed && parsed.data ? parsed.data : parsed;
+
+          if (!source || (!Array.isArray(source.books) && !Array.isArray(source.cabinets))) {
+            showToast('无效的备份文件格式');
+            return;
+          }
+
+          openConfirm(
+            '确认导入数据？',
+            '导入将覆盖当前的书架、周边柜、个人资料和自定义设置。',
+            async () => {
+              books = Array.isArray(source.books) ? source.books : [];
+              cabinets = Array.isArray(source.cabinets) ? source.cabinets : [];
+              if (source.profile && typeof source.profile === 'object') {
+                profile = {
+                  avatar: source.profile.avatar || '',
+                  name: source.profile.name || '收藏家',
+                  bio: source.profile.bio || '记录每一次心动阅读与好物'
+                };
+              }
+              if (source.goodsViewMode) {
+                goodsViewMode = source.goodsViewMode === 'list' ? 'list' : 'grid';
+                await idbSet('goodsViewMode', goodsViewMode);
+              }
+              if (source.theme) {
+                applyTheme(source.theme, false, true);
+              }
+              if (source.fontSettings) {
+                await applyFontSettings(source.fontSettings, true);
+              }
+
+              await saveBooks();
+              await saveCabinets();
+              await saveProfile();
+
+              renderHome();
+              renderGoodsList();
+              renderMe();
+              showToast('数据导入并恢复成功');
+            },
+            '导入'
+          );
+        } catch (e) {
+          showToast('文件解析失败，请确认是正确的 .json 备份文件');
+        }
+      }
+
+      // ================= 事件绑定 =================
+      tabItems.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.tab;
+          if (target === 'home') {
+            renderHome();
+            switchView('home');
+          } else if (target === 'goods') {
+            renderGoodsList();
+            switchView('goods');
+          } else if (target === 'me') {
+            renderMe();
+            switchView('me');
+          }
+        });
+      });
+
+      document.getElementById('me-theme-grid').addEventListener('click', (e) => {
+        const option = e.target.closest('.theme-option');
+        if (!option) return;
+        applyTheme(option.dataset.themeVal, true, true);
+      });
+
+      document.getElementById('btn-edit-profile').addEventListener('click', openProfileModal);
+      document.getElementById('btn-close-profile-modal').addEventListener('click', () => profileModal.classList.remove('show'));
+      document.getElementById('btn-profile-cancel').addEventListener('click', () => profileModal.classList.remove('show'));
+
+      document.getElementById('btn-pick-avatar').addEventListener('click', () => inputProfileAvatar.click());
+      inputProfileAvatar.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          tempAvatar = await compressImageFile(file, 500, 0.85);
+          profileAvatarPreview.src = tempAvatar;
+        } catch (err) {
+          showToast('头像读取失败');
+        }
+      });
+
+      document.getElementById('btn-clear-avatar').addEventListener('click', () => {
+        tempAvatar = '';
+        inputProfileAvatar.value = '';
+        profileAvatarPreview.src = DEFAULT_AVATAR_IMG;
+      });
+
+      document.getElementById('btn-profile-save').addEventListener('click', async () => {
+        const name = inputProfileName.value.trim() || '收藏家';
+        const bio = inputProfileBio.value.trim() || '记录每一次心动阅读与好物';
+        profile = { avatar: tempAvatar, name, bio };
+        await saveProfile();
+        renderMe();
+        profileModal.classList.remove('show');
+        showToast('个人资料已保存');
+      });
+
+      // 字体设置事件
+      document.getElementById('btn-open-font').addEventListener('click', openFontModal);
+      document.getElementById('btn-close-font-modal').addEventListener('click', () => fontModal.classList.remove('show'));
+      document.getElementById('btn-font-cancel').addEventListener('click', () => fontModal.classList.remove('show'));
+
+      document.getElementById('btn-pick-font-file').addEventListener('click', () => inputFontFile.click());
+      inputFontFile.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          showToast('正在读取字体文件...');
+          tempFontFileData = await readFileAsDataURL(file);
+          tempFontFileName = file.name;
+          fontFileNameLabel.textContent = tempFontFileName;
+          inputFontUrl.value = '';
+          showToast('字体文件已就绪，点击应用字体即可生效');
+        } catch (err) {
+          showToast('字体文件读取失败');
+        }
+      });
+
+      document.getElementById('btn-reset-font').addEventListener('click', async () => {
+        await applyFontSettings({ mode: 'system', url: '', fontFamily: '', fileName: '', fileData: '' }, true);
+        fontModal.classList.remove('show');
+        showToast('已恢复系统默认字体');
+      });
+
+      document.getElementById('btn-font-apply').addEventListener('click', async () => {
+        const urlVal = inputFontUrl.value.trim();
+        const familyVal = inputFontFamily.value.trim();
+
+        if (urlVal) {
+          await applyFontSettings({
+            mode: 'url',
+            url: urlVal,
+            fontFamily: familyVal,
+            fileName: '',
+            fileData: ''
+          }, true);
+          fontModal.classList.remove('show');
+          showToast('已应用在线字体');
+        } else if (tempFontFileData) {
+          await applyFontSettings({
+            mode: 'file',
+            url: '',
+            fontFamily: '',
+            fileName: tempFontFileName,
+            fileData: tempFontFileData
+          }, true);
+          fontModal.classList.remove('show');
+          showToast('已应用本地字体');
+        } else {
+          showToast('请输入字体 URL 或选择本地字体文件');
+        }
+      });
+
+      // 月度总结事件
+      document.getElementById('btn-open-summary').addEventListener('click', () => {
+        const now = new Date();
+        summaryYear = now.getFullYear();
+        summaryMonth = now.getMonth() + 1;
+        renderMonthlySummary();
+        switchView('summary');
+      });
+
+      document.getElementById('btn-summary-back').addEventListener('click', () => {
+        switchView('me');
+      });
+
+      document.getElementById('btn-summary-prev').addEventListener('click', () => {
+        summaryMonth -= 1;
+        if (summaryMonth < 1) {
+          summaryMonth = 12;
+          summaryYear -= 1;
+        }
+        renderMonthlySummary();
+      });
+
+      document.getElementById('btn-summary-next').addEventListener('click', () => {
+        summaryMonth += 1;
+        if (summaryMonth > 12) {
+          summaryMonth = 1;
+          summaryYear += 1;
+        }
+        renderMonthlySummary();
+      });
+
+      // 导入导出事件
+      document.getElementById('btn-export-data').addEventListener('click', exportAllData);
+      document.getElementById('btn-import-data').addEventListener('click', () => {
+        inputImportFile.value = '';
+        inputImportFile.click();
+      });
+      inputImportFile.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) handleImportFile(file);
+      });
+
+      // BOOK 页面事件
+      document.getElementById('btn-go-add').addEventListener('click', () => openForm('add'));
+      document.getElementById('btn-form-back').addEventListener('click', () => switchView(formReturnTarget));
+
+      document.getElementById('btn-detail-back').addEventListener('click', () => {
+        renderHome();
+        switchView('home');
+      });
+
+      document.getElementById('btn-detail-edit').addEventListener('click', () => {
+        if (currentDetailId) openForm('edit', currentDetailId);
+      });
+
+      document.getElementById('btn-detail-delete').addEventListener('click', () => {
+        if (!currentDetailId) return;
+        openConfirm('删除这条记录？', '删除后将无法恢复该小说的评分与书评。', async () => {
+          books = books.filter((b) => b.id !== currentDetailId);
+          await saveBooks();
+          currentDetailId = null;
+          renderHome();
+          switchView('home');
+          showToast('已删除记录');
+        });
+      });
+
+      bookListEl.addEventListener('click', (e) => {
+        const row = e.target.closest('.memo-row');
+        if (!row) return;
+        renderDetail(row.dataset.id);
+        switchView('detail');
+      });
+
+      document.getElementById('btn-add-tag').addEventListener('click', addTagFromInput);
+      inputTag.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          addTagFromInput();
+        }
+      });
+
+      formTagsList.addEventListener('click', (e) => {
+        const btn = e.target.closest('.form-tag-remove');
+        if (!btn) return;
+        formTags.splice(Number(btn.dataset.index), 1);
+        renderFormTags();
+      });
+
+      starBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          formStars = Number(btn.dataset.star);
+          updateStarPickerUI();
+        });
+      });
+
+      document.getElementById('btn-form-save').addEventListener('click', async () => {
+        if (inputTag.value.trim()) addTagFromInput();
+
+        const title = inputTitle.value.trim();
+        const author = inputAuthor.value.trim();
+        const review = inputReview.value.trim();
+
+        if (!title) {
+          showToast('请填写书名');
+          inputTitle.focus();
+          return;
+        }
+        if (!author) {
+          showToast('请填写作者');
+          inputAuthor.focus();
+          return;
+        }
+
+        if (editingId) {
+          const idx = books.findIndex((b) => b.id === editingId);
+          if (idx !== -1) {
+            books[idx] = {
+              ...books[idx],
+              title,
+              author,
+              tags: [...formTags],
+              stars: formStars,
+              review,
+              updatedAt: Date.now()
+            };
+            await saveBooks();
+            renderHome();
+            renderDetail(editingId);
+            switchView('detail');
+            showToast('已更新记录');
+          }
+        } else {
+          const newBook = {
+            id: 'book-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+            title,
+            author,
+            tags: [...formTags],
+            stars: formStars,
+            review,
+            createdAt: Date.now()
+          };
+          books.unshift(newBook);
+          await saveBooks();
+          renderHome();
+          switchView('home');
+          showToast('已添加到书架');
+        }
+      });
+
+      // GOODS 周边柜列表事件
+      document.getElementById('btn-add-cabinet').addEventListener('click', () => openCabinetModal('add'));
+
+      cabinetListEl.addEventListener('click', (e) => {
+        const row = e.target.closest('.cabinet-row');
+        if (!row) return;
+        renderCabinetDetail(row.dataset.cabinetId);
+        switchView('cabinet');
+      });
+
+      document.getElementById('btn-pick-cabinet-cover').addEventListener('click', () => inputCabinetCover.click());
+      inputCabinetCover.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          tempCabinetCover = await compressImageFile(file, 800, 0.85);
+          cabinetCoverPreview.src = tempCabinetCover;
+        } catch (err) {
+          showToast('图片读取失败');
+        }
+      });
+
+      document.getElementById('btn-clear-cabinet-cover').addEventListener('click', () => {
+        tempCabinetCover = '';
+        inputCabinetCover.value = '';
+        cabinetCoverPreview.src = DEFAULT_CABINET_COVER;
+      });
+
+      document.getElementById('btn-close-cabinet-modal').addEventListener('click', () => cabinetModal.classList.remove('show'));
+      document.getElementById('btn-cabinet-cancel').addEventListener('click', () => cabinetModal.classList.remove('show'));
+
+      btnCabinetSave.addEventListener('click', async () => {
+        const name = inputCabinetName.value.trim();
+        const intro = inputCabinetIntro.value.trim();
+        if (!name) {
+          showToast('请填写周边柜名称');
+          inputCabinetName.focus();
+          return;
+        }
+
+        if (editingCabinetId) {
+          const cab = cabinets.find((c) => c.id === editingCabinetId);
+          if (cab) {
+            cab.name = name;
+            cab.intro = intro;
+            cab.cover = tempCabinetCover;
+            await saveCabinets();
+            renderGoodsList();
+            if (currentCabinetId === editingCabinetId) renderCabinetDetail(editingCabinetId);
+            showToast('已更新周边柜');
+          }
+        } else {
+          const newCab = {
+            id: 'cab-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+            name,
+            intro,
+            cover: tempCabinetCover,
+            items: [],
+            createdAt: Date.now()
+          };
+          cabinets.unshift(newCab);
+          await saveCabinets();
+          renderGoodsList();
+          showToast('已创建周边柜');
+        }
+
+        cabinetModal.classList.remove('show');
+      });
+
+      // 周边柜内部事件
+      document.getElementById('btn-cabinet-back').addEventListener('click', () => {
+        renderGoodsList();
+        switchView('goods');
+      });
+
+      document.getElementById('btn-cabinet-edit').addEventListener('click', () => {
+        if (currentCabinetId) openCabinetModal('edit', currentCabinetId);
+      });
+
+      document.getElementById('btn-cabinet-delete').addEventListener('click', () => {
+        if (!currentCabinetId) return;
+        openConfirm('删除这个周边柜？', '柜内收录的所有周边记录也会一并删除。', async () => {
+          cabinets = cabinets.filter((c) => c.id !== currentCabinetId);
+          await saveCabinets();
+          currentCabinetId = null;
+          renderGoodsList();
+          switchView('goods');
+          showToast('已删除周边柜');
+        });
+      });
+
+      btnToggleGoodsMode.addEventListener('click', async () => {
+        goodsViewMode = goodsViewMode === 'grid' ? 'list' : 'grid';
+        await idbSet('goodsViewMode', goodsViewMode);
+        if (currentCabinetId) renderCabinetDetail(currentCabinetId);
+      });
+
+      document.getElementById('btn-add-goods-item').addEventListener('click', () => openItemModal('add'));
+
+      cabinetItemsContainer.addEventListener('click', (e) => {
+        const el = e.target.closest('.goods-grid-item, .goods-list-row');
+        if (!el) return;
+        openItemModal('edit', el.dataset.itemId);
+      });
+
+      document.getElementById('btn-pick-item-img').addEventListener('click', () => inputItemImg.click());
+      inputItemImg.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          tempItemImg = await compressImageFile(file, 960, 0.85);
+          itemImgPreview.src = tempItemImg;
+        } catch (err) {
+          showToast('图片读取失败');
+        }
+      });
+
+      document.getElementById('btn-clear-item-img').addEventListener('click', () => {
+        tempItemImg = '';
+        inputItemImg.value = '';
+        itemImgPreview.src = DEFAULT_ITEM_IMG;
+      });
+
+      document.getElementById('btn-close-item-modal').addEventListener('click', () => itemModal.classList.remove('show'));
+      document.getElementById('btn-item-cancel').addEventListener('click', () => itemModal.classList.remove('show'));
+
+      btnItemSave.addEventListener('click', async () => {
+        const cab = cabinets.find((c) => c.id === currentCabinetId);
+        if (!cab) return;
+
+        const name = inputItemName.value.trim();
+        const priceRaw = inputItemPrice.value.trim();
+        const price = priceRaw === '' ? 0 : parseFloat(priceRaw);
+        const date = inputItemDate.value || getTodayStr();
+
+        if (!name) {
+          showToast('请填写周边名称');
+          inputItemName.focus();
+          return;
+        }
+        if (isNaN(price) || price < 0) {
+          showToast('请输入有效的价格');
+          inputItemPrice.focus();
+          return;
+        }
+
+        if (!Array.isArray(cab.items)) cab.items = [];
+
+        if (editingItemId) {
+          const it = cab.items.find((x) => x.id === editingItemId);
+          if (it) {
+            it.name = name;
+            it.price = Math.round(price * 100) / 100;
+            it.date = date;
+            it.image = tempItemImg;
+            await saveCabinets();
+            renderCabinetDetail(currentCabinetId);
+            showToast('已更新周边');
+          }
+        } else {
+          cab.items.unshift({
+            id: 'item-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+            name,
+            price: Math.round(price * 100) / 100,
+            date,
+            image: tempItemImg,
+            createdAt: Date.now()
+          });
+          await saveCabinets();
+          renderCabinetDetail(currentCabinetId);
+          showToast('已添加到周边柜');
+        }
+
+        itemModal.classList.remove('show');
+      });
+
+      btnDeleteItem.addEventListener('click', () => {
+        const cab = cabinets.find((c) => c.id === currentCabinetId);
+        if (!cab || !editingItemId) return;
+        itemModal.classList.remove('show');
+        openConfirm('删除这个周边？', '删除后将从当前周边柜移除。', async () => {
+          cab.items = (cab.items || []).filter((x) => x.id !== editingItemId);
+          await saveCabinets();
+          renderCabinetDetail(currentCabinetId);
+          showToast('已删除周边');
+        });
+      });
+
+      // 通用确认弹窗按钮
+      document.getElementById('modal-cancel').addEventListener('click', () => {
+        confirmModal.classList.remove('show');
+        pendingConfirmAction = null;
+      });
+
+      document.getElementById('modal-confirm').addEventListener('click', () => {
+        confirmModal.classList.remove('show');
+        if (typeof pendingConfirmAction === 'function') {
+          pendingConfirmAction();
+        }
+        pendingConfirmAction = null;
+      });
+
+      // ================= 启动初始化 =================
+      (async function init() {
+        try {
+          const quickTheme = localStorage.getItem(LEGACY_KEYS.theme);
+          if (quickTheme && THEME_NAMES[quickTheme]) {
+            document.documentElement.setAttribute('data-theme', quickTheme);
+          }
+        } catch (e) {}
+
+        await loadAllData();
+        lucide.createIcons();
+        renderHome();
+        renderGoodsList();
+        renderMe();
+        updateStarPickerUI();
+
+        setTimeout(dismissSplash, 2000);
+      })();
+    })();
+  </script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
