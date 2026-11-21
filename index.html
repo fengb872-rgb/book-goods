@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="./icon.png" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="theme-color" content="#ffffff" />
   <!-- 引入 Lucide 图标库 -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -2198,6 +2198,20 @@
       text-overflow: ellipsis;
       flex: 1;
     }
+    .navbar {
+  height: calc(var(--nav-height) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+}
+
+.navbar-home {
+  height: auto;
+  padding: calc(16px + env(safe-area-inset-top)) 18px 12px;
+}
+
+.detail-top-actions,
+.cabinet-top-actions {
+  padding-top: calc(12px + env(safe-area-inset-top));
+}
   </style>
 </head>
 <body>
